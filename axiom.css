@@ -1,5 +1,5 @@
 /*
- * Axiom · v0.2.4
+ * Axiom · v0.2.5
  * An independent Typora theme, inspired by the calm ChatGPT / Codex UI.
  * Original theme CSS · MIT License · see LICENSE.
  * No web fonts, JavaScript, remote assets, or plugin required.
@@ -484,7 +484,7 @@ footer { color: var(--axiom-secondary); background: var(--axiom-bg); }
     #write pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
     #write .CodeMirror pre { white-space: pre-wrap; overflow-wrap: anywhere; }
     #write table { font-size: 0.875rem; }
-    #write th, #write td { padding: 0.45rem 0.6rem; }
+    #write th, #write td { padding: 0.45rem 0.6rem; overflow-wrap: anywhere; }
     #write tr { break-inside: avoid; }
     #write thead { display: table-header-group; }
     #write figure { overflow: visible; }

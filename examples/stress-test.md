@@ -54,6 +54,7 @@ python benchmark.py --input-length 1024 --output-length 256
 | :--- | :--- | ---: | ---: | :--- | ---: | ---: | :--- |
 | A | Prefill | 1024 | 256 | Cache aware | 123.45 ms | 12.34 ms | 这是一段比较长的中文备注，用来测试宽表格 |
 | B | Decode | 8192 | 1024 | Round robin | 234.56 ms | 23.45 ms | `very_long_configuration_key_without_spaces` |
+| C | LongPrefillSchedulingStageWithoutWhitespace | 4096 | 512 | TokenBudgetPrioritySchedulerWithoutWhitespace | 345.67 ms | 34.56 ms | long_checkpoint_configuration_identifier_without_whitespace_for_print_layout |
 
 ## 嵌套与块元素
 

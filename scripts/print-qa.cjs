@@ -12,13 +12,17 @@ fs.mkdirSync(output,{recursive:true});
   const report={scope:'Browser print layout only; not a native Typora export.',cases:[]};
   try{
     for(const name of ['showcase','stress-test']){
-      const page=await browser.newPage({viewport:{width:1100,height:1000}});
+      // Match A4's printable content width (210mm minus two 16mm margins).
+      const page=await browser.newPage({viewport:{width:Math.floor((210-32)*96/25.4),height:1000}});
       await page.goto(pathToFileURL(path.join(root,`artifacts/preview/${name}.html`)).href);
       await page.emulateMedia({media:'print'});
       await page.evaluate(()=>document.fonts.ready);
-      const measurements=await page.evaluate(()=>({bodyFont:getComputedStyle(document.querySelector('#write')).fontSize,sidebar:getComputedStyle(document.querySelector('.preview-sidebar')).display,titlebar:getComputedStyle(document.querySelector('.preview-titlebar')).display,codeWhitespace:getComputedStyle(document.querySelector('pre.md-fences')).whiteSpace}));
+      const measurements=await page.evaluate(()=>{
+        const write=document.querySelector('#write').getBoundingClientRect();
+        return {bodyFont:getComputedStyle(document.querySelector('#write')).fontSize,sidebar:getComputedStyle(document.querySelector('.preview-sidebar')).display,titlebar:getComputedStyle(document.querySelector('.preview-titlebar')).display,codeWhitespace:getComputedStyle(document.querySelector('pre.md-fences')).whiteSpace,tables:[...document.querySelectorAll('#write table')].map(table=>{const r=table.getBoundingClientRect();return {width:r.width,available:write.width,rightOverflow:Math.max(0,r.right-write.right)};})};
+      });
       await page.pdf({path:path.join(output,`${name}.pdf`),format:'A4',printBackground:true,margin:{top:'18mm',right:'16mm',bottom:'18mm',left:'16mm'}});
-      report.cases.push({name,...measurements,pass:measurements.sidebar==='none'&&measurements.titlebar==='none'&&measurements.codeWhitespace==='pre-wrap'});
+      report.cases.push({name,...measurements,pass:measurements.sidebar==='none'&&measurements.titlebar==='none'&&measurements.codeWhitespace==='pre-wrap'&&measurements.tables.every(t=>t.width<=t.available+1&&t.rightOverflow<=1)});
       await page.close();
     }
     report.pass=report.cases.every(c=>c.pass);

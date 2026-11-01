@@ -1,5 +1,13 @@
 # Verification record
 
+## 0.2.5 long-token table print regression — completed 2026-11-01
+
+- With installed base CSS, three unbroken identifiers expanded a four-column table to 1053px inside a 668px print region. The last cell extended beyond the printable right edge.
+- Print-only `overflow-wrap: anywhere` lets long cell tokens participate in table sizing; the same table now fits exactly. Its screen width remains 1255px and the figure still scrolls locally.
+- Added plain long identifiers to the eight-column stress table. The portable print check now measures table width/right-edge containment at A4's 178mm content width, matching the PDF's 16mm margins rather than a wide desktop viewport.
+- Both example PDFs pass table containment. Rendered and reviewed the stress PDF's table page: all eight columns and complete long identifiers are present, without right-edge cropping. Text extraction also preserves all three identifiers after removing line-wrap whitespace.
+- These are browser/installed-CSS integration checks. Typora's native PDF exporter remains a separate pending acceptance gate.
+
 ## 0.2.4 focus-mode print regression — completed 2026-11-01
 
 - Installed control CSS dims inactive text/code to `#c8c8c8`, images/diagrams to 0.3 opacity and task controls to 0.2. A representative focus-mode DOM retained that dimming in browser print media.

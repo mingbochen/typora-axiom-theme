@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.5 — 2026-11-01
+
+- Fixed long plain identifiers forcing printed tables beyond the paper width. Print cells can break long tokens; screen tables retain native local scrolling and original text flow.
+- Expanded the stress sample and print regression checks to measure table containment at A4's actual printable width.
+
 ## 0.2.4 — 2026-11-01
 
 - Prevented editing focus mode from washing out printed text, code, images, diagrams and task controls; screen focus behavior remains native.
