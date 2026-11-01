@@ -9,6 +9,7 @@ const root = path.resolve(__dirname,'..');
 if (!process.env.TYPORA_RESOURCES) throw new Error('Set TYPORA_RESOURCES');
 execFileSync(process.env.PYTHON_PATH || 'python',[path.join(__dirname,'extract-dev-assets.py')],{stdio:'inherit'});
 const engines = path.join(root,'artifacts/local-engines');
+fs.mkdirSync(path.join(root,'tmp/pdfs'),{recursive:true});
 const theme = fs.readFileSync(path.join(root,'axiom.css'),'utf8');
 const base = fs.readFileSync(path.join(process.env.TYPORA_RESOURCES,'style/base.css'),'utf8');
 const showcase = fs.readFileSync(path.join(root,'examples/showcase.md'),'utf8');
@@ -43,11 +44,25 @@ const diagram = showcase.match(/```mermaid\n([\s\S]*?)\n```/)[1];
         document.querySelector('#diagram').innerHTML=typeof output==='string'?output:output.svg;
       },diagram);
       await page.evaluate(()=>document.fonts.ready);
-      const values=await page.evaluate(()=>({width:document.documentElement.clientWidth,scrollWidth:document.documentElement.scrollWidth,formulaCount:document.querySelectorAll('mjx-container').length,formulaErrors:document.querySelectorAll('[data-mml-node="merror"]').length,diagramCount:document.querySelectorAll('#diagram svg').length,diagramWidth:document.querySelector('#diagram svg')?.getBoundingClientRect().width,contentWidth:document.querySelector('#write').getBoundingClientRect().width,diagramHeader:getComputedStyle(document.querySelector('pre[lang="mermaid"]'),'::before').content,mathAssistivePositions:[...document.querySelectorAll('mjx-assistive-mml')].map(el=>getComputedStyle(el).position)}));
-      const pass=values.scrollWidth<=width+1&&values.formulaCount===formulas.length+1&&values.formulaErrors===0&&values.diagramCount===1&&external.length===0&&values.diagramHeader==='none'&&values.mathAssistivePositions.every(position=>position==='absolute');
+      const values=await page.evaluate(()=>{
+        const last=document.querySelector('#math-blocks').lastElementChild;
+        last.scrollLeft=last.scrollWidth;
+        const wideMath={clientWidth:last.clientWidth,scrollWidth:last.scrollWidth,scrollLeft:last.scrollLeft,endVisible:last.querySelector('svg').getBoundingClientRect().right<=last.getBoundingClientRect().right+1};
+        last.scrollLeft=0;
+        return{width:document.documentElement.clientWidth,scrollWidth:document.documentElement.scrollWidth,formulaCount:document.querySelectorAll('mjx-container').length,formulaErrors:document.querySelectorAll('[data-mml-node="merror"]').length,diagramCount:document.querySelectorAll('#diagram svg').length,diagramWidth:document.querySelector('#diagram svg')?.getBoundingClientRect().width,contentWidth:document.querySelector('#write').getBoundingClientRect().width,diagramHeader:getComputedStyle(document.querySelector('pre[lang="mermaid"]'),'::before').content,mathAssistivePositions:[...document.querySelectorAll('mjx-assistive-mml')].map(el=>getComputedStyle(el).position),wideMath};
+      });
+      const pass=values.scrollWidth<=width+1&&values.formulaCount===formulas.length+1&&values.formulaErrors===0&&values.diagramCount===1&&external.length===0&&values.diagramHeader==='none'&&values.mathAssistivePositions.every(position=>position==='absolute')&&values.wideMath.endVisible;
       report.cases.push({viewport:width,...values,externalRequests:external,pass});
       if(!pass)report.errors.push(`Engine/layout issue at ${width}px`);
       await page.screenshot({path:path.join(root,'artifacts',`engines-${width}.png`),fullPage:true});
+      if(width===1100){
+        await page.emulateMedia({media:'print'});
+        const printMath=await page.evaluate(()=>[...document.querySelectorAll('#math-blocks .mathjax-block')].map(el=>({available:el.clientWidth,svgWidth:el.querySelector('svg').getBoundingClientRect().width})));
+        const printPass=printMath.every(m=>m.svgWidth<=m.available+1);
+        report.cases.push({name:'Math print sizing',formulas:printMath,pass:printPass});
+        if(!printPass)report.errors.push('Wide formula does not fit print container');
+        await page.pdf({path:path.join(root,'tmp/pdfs/engine-math.pdf'),format:'A4',printBackground:true,margin:{top:'18mm',right:'16mm',bottom:'18mm',left:'16mm'}});
+      }
       await page.close();
     }
     report.pass=report.errors.length===0;

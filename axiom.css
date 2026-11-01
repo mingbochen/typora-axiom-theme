@@ -297,6 +297,15 @@ body {
 
 #write .md-math-block { margin: 1.5rem 0; padding: 0.3rem 0; }
 #write .md-mathjax-preview { color: var(--axiom-text); }
+#write .mathjax-block, #write .md-mathjax-preview {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+#write .mathjax-block > mjx-container[jax="SVG"][display="true"],
+#write .md-mathjax-preview > mjx-container[jax="SVG"][display="true"] {
+    min-width: min-content;
+}
 #write .md-math-container, #write .md-rawblock-container { border-radius: 0.5rem; }
 #write .md-rawblock-control { border-radius: 0.4rem; background: var(--axiom-code-bg); color: var(--axiom-secondary); }
 #write .md-rawblock-tooltip { background: var(--axiom-code-bg); color: var(--axiom-secondary); }
@@ -458,6 +467,11 @@ footer { color: var(--axiom-secondary); background: var(--axiom-bg); }
     #write tr { break-inside: avoid; }
     #write thead { display: table-header-group; }
     #write figure { overflow: visible; }
+    #write .mathjax-block, #write .md-mathjax-preview { overflow: visible; }
+    #write .mathjax-block > mjx-container[jax="SVG"][display="true"],
+    #write .md-mathjax-preview > mjx-container[jax="SVG"][display="true"] { min-width: 0; }
+    #write .mathjax-block mjx-container[jax="SVG"] > svg,
+    #write .md-mathjax-preview mjx-container[jax="SVG"] > svg { max-width: 100%; height: auto; }
     #write a { color: inherit; text-decoration-color: #999; }
     #write .md-toc { background: transparent; }
     #write img { max-height: 23cm; object-fit: contain; break-inside: avoid; }

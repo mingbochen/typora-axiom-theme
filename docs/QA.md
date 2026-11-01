@@ -7,6 +7,7 @@
 - Six screen/print cases cover 1100px / 390px widths and 16px / 24px root fonts, with tight, paragraph, wrapped and nested task shapes. Installed-base and portable variants passed after the fix.
 - Reviewed normal and narrow/large-font screenshots. This is representative DOM layout QA, not an invocation of Typora's native exporter.
 - Native CSS fixture also confirms pointer cursors on clickable file/outline surfaces and a non-pointer cursor in the search field.
+- A follow-up 20-column MathJax matrix reproduced document overflow at 640px and 390px (page scroll width 807px). The fix gives only math preview regions local scrolling, keeps the end reachable, and fits SVG math to the print container without clipping editor toolbars.
 
 ## Browser fixture — completed 2026-11-01
 
@@ -48,7 +49,7 @@ The current ZIP is a **development preview**. Publish a stable v1.0.0 only after
 - Verified task checkbox dimensions and code line height without replacing native control geometry.
 - Loaded installed Bootstrap / Typora control styles for static file-tree active/hover, search focus and dialog-button checks.
 - Fixed source-mode column styling to preserve a full-width editor viewport and native gutter space.
-- Rendered four formulas (one inline, three blocks) with the installed MathJax engine, and the showcase flowchart with the installed Mermaid engine at three widths. No formula errors, duplicate visible accessibility math or document-level overflow. Confirmed diagram language headers are hidden after a selector specificity fix.
+- Rendered five formulas (one inline, four blocks including a wide matrix) with the installed MathJax engine, and the showcase flowchart with the installed Mermaid engine at three widths. No formula errors, duplicate visible accessibility math or document-level overflow. Wide math scrolls locally and its end remains reachable. Confirmed diagram language headers are hidden after a selector specificity fix.
 - Local engines and native app CSS are development inputs only. They remain under ignored `artifacts/local-engines/` and are not redistributed.
 
 ## Print fixture — completed 2026-11-01
