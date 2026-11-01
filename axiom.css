@@ -1,5 +1,5 @@
 /*
- * Axiom · v0.2.1
+ * Axiom · v0.2.2
  * An independent Typora theme, inspired by the calm ChatGPT / Codex UI.
  * Original theme CSS · MIT License · see LICENSE.
  * No web fonts, JavaScript, remote assets, or plugin required.
@@ -351,7 +351,17 @@ body {
 .file-node-content, .outline-item, .file-list-item { border-radius: 0.4rem; }
 .file-node-content, .outline-item, .file-list-item, .sidebar-tab { cursor: pointer; }
 .file-node-content input { cursor: text; }
-.file-node-content { margin-right: 0.5rem; }
+.file-node-content {
+    margin-right: 0.5rem;
+    line-height: max(22px, 1.5em);
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+/* The native 29px highlight would protrude outside the rounded content pill. */
+#typora-sidebar .file-tree-node.active > .file-node-background {
+    background: transparent;
+    border-color: transparent;
+}
 .file-node-content:hover, .outline-item:hover, .file-list-item:hover { background: var(--axiom-hover); }
 .file-node-content.active, .file-list-item.active { background: var(--axiom-active); color: var(--axiom-heading); }
 .file-library-node.active > .file-node-content,

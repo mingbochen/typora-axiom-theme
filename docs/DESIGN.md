@@ -1,4 +1,4 @@
-# Visual specification · 0.2.1
+# Visual specification · 0.2.2
 
 ## Reference and evidence
 

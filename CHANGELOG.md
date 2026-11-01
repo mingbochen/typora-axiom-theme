@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2 — 2026-11-01
+
+- Fixed the native file-tree selection layer protruding beyond rounded active rows, especially on wrapped filenames.
+- Made file-tree line height and vertical padding accommodate larger root fonts instead of retaining a fixed 22px line box.
+- Added installed-base CSS regression fixtures at 16px and 24px roots; source/editor acceptance remains separately gated on native testing.
+
 ## 0.2.1 — 2026-11-01
 
 - Fixed wide SVG math expanding narrow documents; long display formulas scroll inside their preview and scale to the available print width.

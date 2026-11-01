@@ -1,5 +1,12 @@
 # Verification record
 
+## 0.2.2 file-tree scaling regression — completed 2026-11-01
+
+- The installed control stylesheet retains a 22px file-tree line box and a separate 29px-high selection background. At a 24px root the theme's sidebar font becomes 21px: multiline Chinese/Latin filenames were crowded, while the old background protruded outside the rounded selection.
+- Verified the defect with the actual native file-tree DOM layers, which the earlier simplified sidebar fixture omitted.
+- The theme now scales row leading/padding and removes only the redundant background paint; the rounded content row owns selection paint. Native element geometry and wrapping preferences remain intact.
+- Installed-base fixtures at 16px and 24px roots pass readable leading, selection-paint and document-width checks. Screenshots before/after reviewed; these remain static browser integration fixtures, not a native app screenshot.
+
 ## 0.2.1 export task-list regression — completed 2026-11-01
 
 - Reproduced a real cascade defect in representative exported DOM with installed Typora base CSS: paragraph-wrapped task labels appeared about 30px below their checkboxes. The previous browser Markdown preview used tight lists and did not expose it.

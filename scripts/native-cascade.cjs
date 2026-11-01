@@ -62,6 +62,15 @@ const dom = `<h1>编辑状态也应该保持整洁</h1><p>这是使用本机 Typ
     if(!uiPass)report.errors.push('Sidebar / UI state cascade conflict');
     await ui.screenshot({path:path.join(root,'artifacts/ui-cascade.png')});
     await ui.close();
+    for(const fontSize of [16,24]){
+      const scale=await browser.newPage({viewport:{width:460,height:700}});
+      await scale.setContent(`<!doctype html><html><head><meta charset="utf-8"><style>${nativeCSS}\n${controls}\n${theme}</style><style>html{font-size:${fontSize}px}#typora-sidebar{display:block;position:relative;top:0;left:0;width:300px;height:auto;min-height:650px;padding:24px 12px}.file-tree-node{position:relative}</style></head><body><aside id="typora-sidebar"><p>文件与笔记</p><div class="file-tree-node file-library-node active"><div class="file-node-background"></div><div class="file-node-content"><span class="file-node-title">中文技术笔记与英文 Mixed filename 的多行标题.md</span></div></div><div class="file-tree-node file-library-node"><div class="file-node-background"></div><div class="file-node-content"><span class="file-node-title">第二个文件：Agjpqy 与中文</span></div></div></aside></body></html>`);
+      const metrics=await scale.evaluate(()=>{const title=document.querySelector('.file-node-title');const row=document.querySelector('.file-node-content');const s=getComputedStyle(row);const range=document.createRange();range.selectNodeContents(title);return{fontSize:parseFloat(s.fontSize),lineHeight:parseFloat(s.lineHeight),titleHeight:title.getBoundingClientRect().height,firstTextHeight:range.getClientRects()[0].height,nativeSelectionPaint:getComputedStyle(document.querySelector('.active>.file-node-background')).backgroundColor,selectionPaint:getComputedStyle(row).backgroundColor,documentWidth:document.documentElement.clientWidth,scrollWidth:document.documentElement.scrollWidth};});
+      const pass=metrics.lineHeight>=metrics.fontSize*1.35&&metrics.nativeSelectionPaint==='rgba(0, 0, 0, 0)'&&metrics.scrollWidth<=460;
+      report.cases.push({name:'Scaled native file-tree selection',rootFont:fontSize,...metrics,pass});
+      if(!pass)report.errors.push(`File-tree scale/selection issue at root ${fontSize}px`);
+      await scale.screenshot({path:path.join(root,'artifacts',`sidebar-scale-${fontSize}.png`)});await scale.close();
+    }
     report.pass = !report.errors.length;
     fs.writeFileSync(path.join(root,'artifacts/native-cascade-qa.json'),JSON.stringify(report,null,2));
     console.log(JSON.stringify(report,null,2));
