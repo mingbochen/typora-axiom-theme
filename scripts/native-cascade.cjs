@@ -57,7 +57,7 @@ const dom = `<h1>编辑状态也应该保持整洁</h1><p>这是使用本机 Typ
     await ui.locator('#hover-file').hover();
     await ui.locator('#file-library-search-input').focus();
     const uiValues=await ui.evaluate(()=>({active:getComputedStyle(document.querySelector('.file-tree-node.active>.file-node-content')).backgroundColor,hover:getComputedStyle(document.querySelector('#hover-file')).backgroundColor,searchBorder:getComputedStyle(document.querySelector('#file-library-search-input')).borderTopColor,primaryText:getComputedStyle(document.querySelector('.btn-primary')).color,primaryBackground:getComputedStyle(document.querySelector('.btn-primary')).backgroundColor}));
-    const uiPass=uiValues.active==='rgb(233, 233, 235)'&&uiValues.hover==='rgb(238, 238, 239)'&&uiValues.searchBorder==='rgb(66, 133, 197)'&&uiValues.primaryText==='rgb(255, 255, 255)';
+    const uiPass=uiValues.active==='rgb(240, 239, 236)'&&uiValues.hover==='rgb(245, 243, 240)'&&uiValues.searchBorder==='rgb(246, 197, 67)'&&uiValues.primaryText==='rgb(26, 28, 31)';
     report.cases.push({name:'Sidebar and dialog static states',...uiValues,pass:uiPass});
     if(!uiPass)report.errors.push('Sidebar / UI state cascade conflict');
     await ui.screenshot({path:path.join(root,'artifacts/ui-cascade.png')});

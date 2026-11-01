@@ -5,6 +5,11 @@ const root = path.resolve(__dirname, '..');
 const css = fs.readFileSync(path.join(root, 'axiom.css'), 'utf8');
 const pkg = require('../package.json');
 const failures = [];
+const reference=JSON.parse(fs.readFileSync(path.join(root,'reference/chatgpt-light.json'),'utf8'));
+for(const [name,value] of [['bg',reference.theme.surface],['text',reference.theme.ink],['accent',reference.theme.accent],['diff-added',reference.theme.semanticColors.diffAdded],['diff-removed',reference.theme.semanticColors.diffRemoved],['skill',reference.theme.semanticColors.skill]]){
+  const actual=css.match(new RegExp('--axiom-'+name+':\\s*(#[0-9a-fA-F]{6})\\s*;'))?.[1];
+  if(actual?.toLowerCase()!==value.toLowerCase())failures.push(`Reference export drift: ${name}`);
+}
 if (/@import|@font-face|url\s*\(/i.test(css)) failures.push('Theme must remain fully offline and self-contained');
 if (!css.includes(`v${pkg.version}`)) failures.push('CSS banner and package version differ');
 const defined = new Set([...css.matchAll(/(--[\w-]+)\s*:/g)].map(m => m[1]));

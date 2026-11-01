@@ -8,9 +8,9 @@ Resolve the intended owner and usable write authorization before publication. Do
 
 ## Preview release
 
-- Suggested tag: `v0.1.0`.
-- Suggested title: `Axiom 0.1.0 — development preview`.
-- Attach `axiom-v0.1.0.zip` and its `.sha256` file.
+- Suggested tag: `v0.2.0`.
+- Suggested title: `Axiom 0.2.0 — development preview`.
+- Attach `axiom-v0.2.0.zip` and its `.sha256` file.
 - State that screenshots are browser fixtures and native editor/export validation is pending.
 - README should show a real Typora screenshot once available; replace the clearly labeled browser preview at that point.
 

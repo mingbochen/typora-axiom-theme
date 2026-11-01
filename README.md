@@ -2,9 +2,9 @@
 
 把熟悉的对话阅读体验，带进 Typora。
 
-一款以浅色 ChatGPT / Codex 界面为灵感的独立主题：白色正文、低饱和灰阶、柔和的代码块、清晰的中文排版。安装只需要一个 CSS 文件，离线使用，无需字体下载或插件。
+一款依据浅色 ChatGPT 外观配置设计的独立主题：白色正文、黄色强调色、暖白侧栏、柔和的代码块和清晰的中文排版。安装只需要一个 CSS 文件，离线使用，无需字体下载或插件。
 
-> 当前版本：**0.1.0 开发预览**。已完成浏览器排版、Typora 基础样式及本机 MathJax / Mermaid 引擎的集成检查。真实 Typora 编辑交互与原生 PDF 导出仍待验证。当前样张属于浏览器开发夹具，不是 Typora 实机截图。
+> 当前版本：**0.2.0 开发预览**。已完成浏览器排版、Typora 基础样式及本机 MathJax / Mermaid 引擎的集成检查。真实 Typora 编辑交互与原生 PDF 导出仍待验证。当前样张属于浏览器开发夹具，不是 Typora 实机截图。
 
 ![浏览器排版预览，非 Typora 实机截图](docs/images/browser-preview.png)
 
@@ -39,7 +39,9 @@ pwsh -File scripts/install.ps1
 
 ## 字体与字号
 
-正文采用系统字体回退：Segoe UI → Helvetica Neue → PingFang SC → Microsoft YaHei UI → Microsoft YaHei。代码优先使用 Cascadia Code，随后回退到 SFMono-Regular、Consolas 和系统等宽字体。
+默认字体声明已按参考 App 的本机资源核对。界面与正文：`-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`；代码：`ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace`。
+
+在本机 Windows Chrome 的字形探测中，同样的声明实际使用 **Segoe UI（英文）、Microsoft YaHei／微软雅黑（中文）、Consolas（英文代码）**。这属于本机浏览器探测证据，不是对其他设备字体的保证。
 
 没有安装某个字体时会自动回退，因此不同设备的字形和换行会略有不同。主题不捆绑或下载商业字体。
 
@@ -53,8 +55,8 @@ pwsh -File scripts/install.ps1
 :root {
     /* 总列宽含左右各 1.5rem 内边距；53rem 对应约 800px 正文宽度。 */
     --axiom-content-width: 53rem;
-    --axiom-body-leading: 1.8;
-    --axiom-code-leading: 1.65;
+    --axiom-body-leading: 1.75;
+    --axiom-code-leading: 1.5;
     --axiom-radius: 0.75rem;
 }
 ```
@@ -71,7 +73,8 @@ pwsh -File scripts/install.ps1
 | :--- | :--- |
 | 浏览器夹具：390 / 640 / 1024 / 1440px 布局 | 已检查，无页面级横向溢出 |
 | 浏览器夹具：字体缩放到 20px | 正文与代码均随根字号变化 |
-| 正文、次级文字、链接和代码主要配色 | 已计算，所选文字配色均达到 4.5:1 |
+| 正文、次级文字、链接、选中文字和黄色按钮文字 | 已计算，检查项达到 4.5:1 |
+| 参考 App 的 Codex 代码配色 | 已核对主要 token；字符串与属性色保留参考值，部分配对低于 4.5:1，报告明确记录 |
 | 主题网络依赖 | 无；浏览器夹具未发起网络请求 |
 | Typora 基础 CSS + 代表性编辑器 DOM | 已检查代码行、任务复选框、源码区域及界面状态 |
 | 本机 MathJax / Mermaid 引擎的浏览器集成 | 已检查 3 种宽度，无公式解析错误及页面溢出 |
@@ -106,7 +109,7 @@ npm run build
 
 使用本机 Chrome 时可设置 `CHROME_PATH`；使用已安装的共享依赖时可设置 Node.js 的 `NODE_PATH`。所有这些都是开发工具依赖，安装主题本身无需 Node.js 或 Python。
 
-参见 [视觉规格](docs/DESIGN.md)、[验证记录](docs/QA.md) 和 [发布清单](docs/RELEASE.md)。
+参见 [原始参考配置](reference/chatgpt-light.json)、[视觉规格](docs/DESIGN.md)、[验证记录](docs/QA.md) 和 [发布清单](docs/RELEASE.md)。半透明侧栏通过 CSS 背景与模糊实现；不修改操作系统窗口合成，无法保证与 App 的原生材质完全相同。
 
 ## 参考与许可
 

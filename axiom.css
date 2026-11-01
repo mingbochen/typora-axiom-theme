@@ -1,5 +1,5 @@
 /*
- * Axiom · v0.1.0
+ * Axiom · v0.2.0
  * An independent Typora theme, inspired by the calm ChatGPT / Codex UI.
  * Original theme CSS · MIT License · see LICENSE.
  * No web fonts, JavaScript, remote assets, or plugin required.
@@ -9,25 +9,41 @@
 /* 01 · Design tokens. User adjustments can live in axiom.user.css. */
 :root {
     --axiom-bg: #ffffff;
-    --axiom-text: #242424;
-    --axiom-heading: #171717;
-    --axiom-secondary: #616161;
-    --axiom-muted: #737373;
+    --axiom-text: #1a1c1f;
+    --axiom-heading: #1a1c1f;
+    --axiom-secondary: #606163;
+    --axiom-muted: #737477;
     --axiom-subtle: #f9f9f9;
-    --axiom-code-bg: #f7f7f8;
-    --axiom-hover: #eeeeef;
-    --axiom-active: #e9e9eb;
-    --axiom-border: #e5e5e7;
+    --axiom-sidebar: #fdfaf7;
+    --axiom-sidebar-glass: rgb(249 242 232 / 36%);
+    --axiom-code-bg: #f4f4f4;
+    --axiom-hover: #f5f3f0;
+    --axiom-active: #f0efec;
+    --axiom-border: #ededee;
     --axiom-border-strong: #d4d4d8;
-    --axiom-link: #2563a6;
-    --axiom-accent: #171717;
-    --axiom-selection: #dbeafe;
-    --axiom-focus: #4285c5;
-    --axiom-ui-font: "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
-    --axiom-code-font: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", "Microsoft YaHei", monospace;
+    --axiom-link: #95611f;
+    --axiom-accent: #f6c543;
+    --axiom-accent-text: #95611f;
+    --axiom-on-accent: #1a1c1f;
+    --axiom-accent-hover: #edbd36;
+    --axiom-accent-soft: #fdf6dc;
+    --axiom-selection: #fdf6dc;
+    --axiom-focus: #f6c543;
+    --axiom-diff-added: #00a240;
+    --axiom-diff-removed: #ba2623;
+    --axiom-skill: #924ff7;
+    --axiom-ui-font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --axiom-code-font: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --axiom-syntax-comment: #687078;
+    --axiom-syntax-keyword: #ab4f7a;
+    --axiom-syntax-number: #ac4f23;
+    --axiom-syntax-string: #3a843f;
+    --axiom-syntax-variable: #643cae;
+    --axiom-syntax-name: #1f4e94;
+    --axiom-syntax-attribute: #b8802b;
     --axiom-content-width: 53rem;
-    --axiom-body-leading: 1.8;
-    --axiom-code-leading: 1.65;
+    --axiom-body-leading: 1.75;
+    --axiom-code-leading: 1.5;
     --axiom-radius: 0.75rem;
     --axiom-shadow: 0 8px 32px rgb(0 0 0 / 8%);
 
@@ -38,8 +54,8 @@
     --meta-content-color: var(--axiom-secondary);
     --primary-color: var(--axiom-accent);
     --primary-btn-border-color: var(--axiom-accent);
-    --primary-btn-text-color: #ffffff;
-    --side-bar-bg-color: var(--axiom-subtle);
+    --primary-btn-text-color: var(--axiom-on-accent);
+    --side-bar-bg-color: var(--axiom-sidebar);
     --window-border: 1px solid var(--axiom-border);
     --control-text-color: var(--axiom-secondary);
     --control-text-hover-color: var(--axiom-heading);
@@ -50,7 +66,7 @@
     --item-hover-text-color: var(--axiom-heading);
     --select-text-bg-color: var(--axiom-selection);
     --select-text-font-color: var(--axiom-heading);
-    --search-select-bg-color: #ffedb1;
+    --search-select-bg-color: var(--axiom-accent-soft);
     --search-select-text-color: #352b11;
     --rawblock-edit-panel-bd: var(--axiom-code-bg);
     --monospace: var(--axiom-code-font);
@@ -90,7 +106,7 @@ body {
 
 #write > :first-child { margin-top: 0; }
 #write p { margin: 0 0 1.15em; }
-#write strong { color: var(--axiom-heading); font-weight: 650; }
+#write strong { color: var(--axiom-heading); font-weight: 600; }
 #write em { font-style: italic; }
 #write del { color: var(--axiom-muted); }
 
@@ -98,7 +114,7 @@ body {
 #write h4, #write h5, #write h6 {
     color: var(--axiom-heading);
     font-family: var(--axiom-ui-font);
-    font-weight: 650;
+    font-weight: 600;
     line-height: 1.45;
     border: 0;
     padding: 0;
@@ -124,7 +140,7 @@ body {
     overflow-wrap: anywhere;
 }
 #write a:hover { text-decoration-color: currentColor; }
-#write a:focus-visible { outline: 2px solid var(--axiom-focus); outline-offset: 3px; border-radius: 2px; }
+#write a:focus-visible { outline: 2px solid var(--axiom-accent-text); outline-offset: 3px; border-radius: 2px; }
 
 #write ul, #write ol { margin: 0.65rem 0 1.15rem; padding-left: 1.65rem; }
 #write li { margin: 0.35rem 0; padding-left: 0.15rem; }
@@ -152,7 +168,7 @@ body {
 }
 #write code, #write tt {
     background: #f1f1f3;
-    color: #35353b;
+    color: var(--axiom-text);
     padding: 0.15em 0.35em;
     border: 1px solid rgb(0 0 0 / 3%);
     border-radius: 0.3rem;
@@ -168,7 +184,7 @@ body {
     border: 1px solid var(--axiom-border);
     border-radius: var(--axiom-radius);
     background: var(--axiom-code-bg);
-    color: #303039;
+    color: var(--axiom-text);
     font-family: var(--axiom-code-font);
     font-size: 1rem;
     line-height: var(--axiom-code-leading);
@@ -207,16 +223,19 @@ body {
 #write .md-fences .code-tooltip { border-radius: 0.4rem; color: var(--axiom-secondary); background: var(--axiom-bg); border-color: var(--axiom-border); }
 
 /* Muted syntax palette: contrast over saturation. */
-.cm-s-inner .cm-comment, .cm-s-inner .cm-meta { color: #687078; }
-.cm-s-inner .cm-keyword, .cm-s-inner .cm-operator { color: #8051a5; }
-.cm-s-inner .cm-string, .cm-s-inner .cm-string-2 { color: #39734c; }
-.cm-s-inner .cm-number, .cm-s-inner .cm-atom { color: #a05625; }
-.cm-s-inner .cm-def, .cm-s-inner .cm-variable-2, .cm-s-inner .cm-builtin { color: #28699b; }
-.cm-s-inner .cm-variable, .cm-s-inner .cm-property { color: #303039; }
-.cm-s-inner .cm-tag { color: #39734c; }
-.cm-s-inner .cm-attribute { color: #8b5e21; }
+.cm-s-inner .cm-comment, .cm-s-inner .cm-meta { color: var(--axiom-syntax-comment); }
+.cm-s-inner .cm-keyword, .cm-s-inner .cm-operator { color: var(--axiom-syntax-keyword); }
+.cm-s-inner .cm-string, .cm-s-inner .cm-string-2 { color: var(--axiom-syntax-string); }
+.cm-s-inner .cm-number, .cm-s-inner .cm-atom { color: var(--axiom-syntax-number); }
+.cm-s-inner .cm-def, .cm-s-inner .cm-builtin { color: var(--axiom-syntax-name); }
+.cm-s-inner .cm-variable-2 { color: var(--axiom-syntax-variable); }
+.cm-s-inner .cm-variable, .cm-s-inner .cm-property { color: var(--axiom-text); }
+.cm-s-inner .cm-tag { color: var(--axiom-syntax-string); }
+.cm-s-inner .cm-attribute { color: var(--axiom-syntax-attribute); }
 .cm-s-inner .cm-error { color: #b42332; background: #fff0f1; }
 .cm-s-inner .cm-link { color: var(--axiom-link); }
+.cm-s-inner .cm-positive { color: var(--axiom-diff-added); }
+.cm-s-inner .cm-negative { color: var(--axiom-diff-removed); }
 
 #write kbd {
     display: inline-block;
@@ -241,7 +260,9 @@ body {
 }
 #write figure > table { margin: 0; }
 #write th, #write td { padding: 0.7rem 0.9rem; border: 0; border-bottom: 1px solid var(--axiom-border); vertical-align: top; }
-#write th { color: var(--axiom-heading); background: var(--axiom-subtle); font-weight: 650; border-top: 1px solid var(--axiom-border); }
+#write th { color: var(--axiom-heading); background: transparent; font-weight: 600; }
+#write th:first-child, #write td:first-child { padding-left: 0; }
+#write th:last-child, #write td:last-child { padding-right: 0; }
 #write tr { background: transparent; }
 #write tbody tr:last-child td { border-bottom-color: var(--axiom-border-strong); }
 #write td code, #write th code { font-size: 0.9em; }
@@ -300,7 +321,7 @@ body {
     font-size: 0.875rem;
     line-height: 1.65;
 }
-#write sup.md-footnote { padding: 0.05em 0.3em; color: var(--axiom-link); background: #edf4fc; border-radius: 0.25rem; }
+#write sup.md-footnote { padding: 0.05em 0.3em; color: var(--axiom-link); background: var(--axiom-accent-soft); border-radius: 0.25rem; }
 #write .footnotes { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--axiom-border); opacity: 1; }
 #write .footnote-line { font-size: 0.875rem; color: var(--axiom-secondary); line-height: 1.7; }
 #write .md-def-name { color: var(--axiom-link); }
@@ -310,14 +331,14 @@ body {
     font-family: var(--axiom-ui-font);
     font-size: 0.875rem;
     line-height: 1.5;
-    background: var(--axiom-subtle);
+    background: var(--axiom-sidebar);
     border-right: 1px solid var(--axiom-border);
     box-shadow: none;
 }
 .sidebar-tabs { border-bottom-color: var(--axiom-border); }
 .sidebar-tab { color: var(--axiom-secondary); font-weight: 500; }
-.sidebar-tab.active { color: var(--axiom-heading); font-weight: 650; }
-.sidebar-tab.active::after { background: var(--axiom-heading); height: 2px; }
+.sidebar-tab.active { color: var(--axiom-heading); font-weight: 600; }
+.sidebar-tab.active::after { background: var(--axiom-accent); height: 2px; }
 .file-node-content, .outline-item, .file-list-item { border-radius: 0.4rem; }
 .file-node-content { margin-right: 0.5rem; }
 .file-node-content:hover, .outline-item:hover, .file-list-item:hover { background: var(--axiom-hover); }
@@ -328,7 +349,7 @@ body {
 .file-list-item-file-name { color: var(--axiom-text); font-weight: 500; }
 .file-list-item-summary, .file-list-item-time { color: var(--axiom-muted); }
 .outline-item { padding-top: 0.25rem; padding-bottom: 0.25rem; }
-.outline-active { color: var(--axiom-heading); font-weight: 650; }
+.outline-active { color: var(--axiom-heading); font-weight: 600; }
 .outline-label { text-decoration: none; }
 #typora-sidebar .outline-content { padding: 0.5rem 0.65rem 1rem; }
 #ty-sidebar-footer { border-top: 1px solid var(--axiom-border); }
@@ -357,12 +378,17 @@ footer { color: var(--axiom-secondary); background: var(--axiom-bg); }
 .btn { border-radius: 0.4rem; }
 .btn-default { color: var(--axiom-text); border-color: var(--axiom-border); background: var(--axiom-subtle); }
 .btn-default:hover { color: var(--axiom-heading); background: var(--axiom-hover); }
-.btn-primary { color: #fff; border-color: var(--axiom-accent); background: var(--axiom-accent); }
-.btn-primary:hover { background: #353535; border-color: #353535; }
+.btn-primary { color: var(--axiom-on-accent); border-color: var(--axiom-accent); background: var(--axiom-accent); }
+.btn-primary:hover { color: var(--axiom-on-accent); background: var(--axiom-accent-hover); border-color: var(--axiom-accent-hover); }
 #md-searchpanel { border-bottom: 1px solid var(--axiom-border); box-shadow: 0 2px 8px rgb(0 0 0 / 3%); }
 #md-notification { border-color: var(--axiom-border); background: var(--axiom-subtle); color: var(--axiom-text); }
 .md-search-hit { background: #fff0bd; }
 .md-search-hit.md-search-select { background: #ffd782; }
+
+/* Tint comes from the supplied screenshot; CSS blur does not alter native window opacity. */
+@supports (backdrop-filter: blur(16px)) {
+    #typora-sidebar { background: var(--axiom-sidebar-glass); backdrop-filter: blur(16px); }
+}
 
 /* 06 · Source, focus, narrow window and reduced-motion modes. */
 #typora-source { color: var(--axiom-text); background: var(--axiom-bg); }
@@ -383,7 +409,7 @@ footer { color: var(--axiom-secondary); background: var(--axiom-bg); }
     padding: 2.75rem 1.5rem 8rem 3.75rem;
 }
 #typora-source .CodeMirror-gutters { background: var(--axiom-bg); border: 0; }
-#typora-source .cm-header { color: var(--axiom-heading); font-weight: 650; }
+#typora-source .cm-header { color: var(--axiom-heading); font-weight: 600; }
 #typora-source .cm-formatting { color: #83838b; }
 .on-focus-mode #write .md-focus { opacity: 1; }
 .on-focus-mode #write blockquote { border-left-color: var(--axiom-border-strong); }
@@ -406,9 +432,9 @@ footer { color: var(--axiom-secondary); background: var(--axiom-bg); }
 .typora-export .task-list-item input { position: static; margin-right: 0.5rem; vertical-align: middle; }
 
 @media print {
-    :root { --axiom-bg: #fff; --axiom-text: #242424; --axiom-code-bg: #f7f7f8; }
+    :root { --axiom-bg: #fff; --axiom-text: #1a1c1f; --axiom-code-bg: #f4f4f4; }
     html { font-size: 11pt; }
-    body { background: #fff; color: #242424; }
+    body { background: #fff; color: #1a1c1f; }
     #write { max-width: none; margin: 0; padding: 0; }
     #write h1, #write h2, #write h3, #write h4, #write h5, #write h6 { break-after: avoid-page; }
     #write p, #write li { orphans: 3; widows: 3; }

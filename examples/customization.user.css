@@ -3,8 +3,8 @@
  */
 :root {
     --axiom-content-width: 53rem;
-    --axiom-body-leading: 1.8;
-    --axiom-code-leading: 1.65;
+    --axiom-body-leading: 1.75;
+    --axiom-code-leading: 1.5;
     --axiom-radius: 0.75rem;
 
     /* Optional examples:

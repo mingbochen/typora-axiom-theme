@@ -1,49 +1,47 @@
-# Visual specification · 0.1.0
+# Visual specification · 0.2.0
 
-## Baseline and accuracy
+## Reference and evidence
 
-The requested reference is the user's current desktop App theme. The saved appearance inspected on 2026-10-31 recorded light Codex preset, contrast 45, 16px UI/code fonts, and no light-theme color/font overrides.
+The source of truth is the owner-supplied codex-theme-v1 export in reference/chatgpt-light.json: light variant, ChatGPT accent source, yellow #f6c543, surface #ffffff, ink #1a1c1f, contrast 45, default fonts and translucent windows. codeThemeId codex identifies the code palette; it does not mean the UI uses the older blue/black Codex accent.
 
-Exact App color values, font names and geometry have not been extracted or measured. The implementation below is an original interpretation of that reference, not a pixel-identical port. App contrast 45 is a preset setting, not a CSS contrast ratio.
+The initial 0.1.0 interpretation from historical saved configuration is superseded. Base values come from the export; secondary surfaces and typography adaptations are evidence-based design decisions, not a claim of pixel identity.
 
 ## Palette
 
-| Role | Value | Intent |
+| Role | Value | Evidence |
 | :--- | :--- | :--- |
-| Reading surface | `#ffffff` | White document canvas |
-| Body | `#242424` | Soft black, strong text contrast |
-| Heading / active UI | `#171717` | Quiet emphasis |
-| Secondary | `#616161` | Quotes, code labels, sidebar |
-| Muted | `#737373` | Supporting metadata |
-| Sidebar | `#f9f9f9` | Slight separation from document |
-| Code | `#f7f7f8` | Neutral, cool gray |
-| Border | `#e5e5e7` | Thin structural edge |
-| Strong border | `#d4d4d8` | Quote rail, table ending |
-| Link | `#2563a6` | Recognizable link affordance |
-| Selection | `#dbeafe` | Readable selected text |
+| Surface | #ffffff | Theme export |
+| Body / heading | #1a1c1f | Theme export |
+| Accent | #f6c543 | Theme export |
+| Added / removed / skill | #00a240 / #ba2623 / #924ff7 | Theme export, exposed as semantic tokens |
+| Accent soft / link | #fdf6dc / #95611f | Light yellow shades in local App palette; dark shade for readable links |
+| Secondary | #606163 | Opaque approximation of reference light text opacity at contrast45 |
+| Muted | #737477 | Readable supporting text adaptation |
+| Sidebar fallback | #fdfaf7 | Most frequent background pixel in owner's original sidebar screenshot |
+| Sidebar glass | rgb(249 242 232 /36%) | Warm frame tint over white approximates the screenshot |
+| Active row | #f0efec | Sampled screenshot state |
+| Code | #f4f4f4 | Neutral secondary surface adaptation |
+| Border | #ededee | Reference low-opacity ink approximation |
 
-Code syntax colors prioritize text contrast and muted saturation. The development report calculates representative foreground/background pairs; it does not certify every possible editor state.
+Local App palette declarations were read without redistributing its assets: keyword #ab4f7a, literal #ac4f23, string #3a843f, variable #643cae, name #1f4e94, attribute #b8802b. CodeMirror5 token categories cannot exactly reproduce the App's newer engine. String and attribute pairs fall below4.5:1 on this code surface; the audit records these as explicit reference exceptions, not accessibility passes.
 
-## Typography and rhythm
+## Fonts and rhythm
 
-- Root size: 16px, with relative units for document and code sizes.
-- Body: 1rem / 1.8; code fence: 1rem / 1.65; inline code: 0.9em.
-- H1: 2rem / 1.3; H2: 1.5rem / 1.45; H3: 1.25rem / 1.45.
-- H4: 1.125rem; H5/H6: 1rem. No heading underline decoration.
-- Body font: system sans-serif stack, including Chinese fallbacks.
-- Code font: system monospace stack; no bundled webfonts.
-- Document max width: 53rem including 3rem horizontal padding → 800px usable text at root 16px.
-- Paragraph ending margin: 1.15em; primary section heading top margin: 2rem.
-- Code radius: 0.75rem; 1px border; language label in reserved header space.
-- Quotes: 3px neutral rail, no filled card background.
-- Tables: quiet header surface and horizontal rules; preserve cell alignment.
+- Default UI stack verified in local App resources: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif.
+- Default code stack: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace.
+- Chrome platform-font probe locally resolved Segoe UI for Latin UI, Microsoft YaHei for Chinese and Consolas for Latin code. This tests matching declarations, not the live App DOM.
+- Root16px; body1rem /1.75; fenced code1rem /1.5. Code leading follows the reference code-editor declaration; body leading is a visual adaptation.
+- Heading weight600; H1 2rem, H2 1.5rem, H3 1.25rem. No decorative heading underline.
+- Document max53rem includes3rem side padding, giving800px usable text at16px root. CSS units avoid assuming the unknown monitor/application scaling.
+- Paragraph ending1.15em; section heading top2rem; code radius0.75rem with reserved language header.
+- White table headers and horizontal rules; outer cells align to the document column, matching the supplied table reference.
 
-## Editing constraints
+## Editing and material constraints
 
-Do not globally reset `white-space`, position CodeMirror line content, hide native tooltips or simulate interactive controls using CSS. Document selectors are scoped to `#write`; UI variables and component selectors are separate. Native task checkboxes remain native controls.
+Preserve CodeMirror line geometry, native task controls, tooltip positioning and full-window source editor scrolling. Keep content selectors under #write. No fake copying controls, chat bubbles or window buttons.
 
-Diagram fences do not receive code language headers. CodeMirror syntax token colors are shared with source mode; editor line and cursor geometry is retained.
+Sidebar tint falls back to opaque warm white. Supported browsers use backdrop blur; a CSS theme cannot turn on native operating system window translucency. Diagram fences do not receive code headers.
 
 ## Responsive and print
 
-Below 640px: reduce page side padding and H1/H2 size. Preserve code and table local scrolling rather than expanding the page. Print uses a white page, 11pt root and wrapped code. Very wide print tables and multi-page CodeMirror output require native export testing.
+Below640px reduce page inset and H1/H2 size. Code and wide tables scroll locally. Print uses white paper,11pt root and wrapped code. Native editing, application zoom and Typora PDF export remain separate acceptance checks.

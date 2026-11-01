@@ -1,6 +1,6 @@
 {
   "name": "typora-axiom-theme",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "An offline light Typora theme inspired by the ChatGPT / Codex reading experience.",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "check:native-css": "node scripts/native-cascade.cjs",
     "check:engines": "node scripts/engine-qa.cjs",
     "check:print": "node scripts/print-qa.cjs",
+    "check:fonts": "node scripts/font-qa.cjs",
     "build": "python scripts/package.py"
   },
   "devDependencies": {

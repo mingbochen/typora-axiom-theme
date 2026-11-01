@@ -7,7 +7,7 @@ Tool: local Chrome via Playwright. Sample inputs: `examples/showcase.md` and `ex
 - 8 viewport/device-scale cases: 1440, 1024, 640 and 390 CSS pixels; DPR 1, 1.25 and 1.5. DPR captures pixel density, **not** Typora zoom; actual 125%/150% application zoom remains a native check.
 - All cases: no page-level horizontal overflow, theme CSS parsed, no HTTP(S) requests.
 - Font preference simulation: change root font size to 20px; body and fenced code both become 20px.
-- 12 selected text/background pairs have calculated contrast at least 4.5:1. This covers the named pairs, not all possible state combinations.
+- The original0.1.0 selected palette met4.5:1. Version0.2.0 reads colors directly from CSS and checks body, secondary, links, selected text and accent-button text against4.5:1. Two source-matched syntax colors (string4.19:1 and attribute3.10:1 on the chosen code surface) are recorded as explicit non-AA reference exceptions.
 - First-screen and code-detail screenshots visually reviewed. Heading hierarchy, neutral code surface, Chinese spacing and quote indentation look coherent at 1440px.
 - Full reports and screenshots are development outputs under ignored `artifacts/`.
 
@@ -32,6 +32,8 @@ Local installation found: Windows Typora 1.9.5. The theme file was installed. In
 The current ZIP is a **development preview**. Publish a stable v1.0.0 only after native checks above are completed and any defects are resolved. The owner selected the public repository `mingbochen/typora-axiom-theme` for Axiom. Any publication before native sign-off must retain the preview status.
 
 ## Local integration fixtures — completed 2026-11-01
+
+- Version0.2.0 uses the owner's exact export, correct yellow/ink colors and source-verified font stacks. Local platform font probe resolved Segoe UI / Microsoft YaHei / Consolas. Original App assets/fonts are not copied or distributed.
 
 - Loaded installed Typora base/CodeMirror CSS with representative editor DOM at 1100, 640 and 390px.
 - Fixed ordinary preformatted-block styling reaching CodeMirror line elements; native line margin, border and background now remain unchanged.

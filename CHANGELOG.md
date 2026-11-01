@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0 — 2026-11-01
+
+Development preview aligned to the owner's actual ChatGPT theme export.
+
+- Corrected accent to yellow `#f6c543` and ink to `#1a1c1f`; added supplied semantic colors and preserved the original reference export.
+- Replaced guessed font preferences with source-verified system UI and monospace stacks; added real local glyph-font probe.
+- Matched the warm sidebar reference, added CSS translucency with fallback, and refined table alignment, semibold weights and code rhythm.
+- Mapped source-verified Codex syntax colors; contrast reports now read current CSS tokens and explicitly disclose reference palette exceptions.
+- Stable release remains gated on native Typora editing and export checks.
+
 ## 0.1.0 — 2026-11-01
 
 Development preview. Not yet a stable native-verified release.
