@@ -36,7 +36,7 @@ def main():
             output.writestr(info, data)
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     checksum = archive.with_suffix('.zip.sha256')
-    checksum.write_text(f'{digest}  {archive.name}\n', encoding='utf-8')
+    checksum.write_text(f'{digest}  {archive.name}\n', encoding='utf-8', newline='\n')
     with ZipFile(archive) as output:
         assert output.testzip() is None, 'Archive integrity failed'
         assert len(output.namelist()) == len(FILES), 'Archive manifest mismatch'
