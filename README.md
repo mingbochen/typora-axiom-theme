@@ -19,7 +19,7 @@
 
 ## 安装
 
-1. 下载 [axiom.css](axiom.css)（在 GitHub 文件页选择下载原始文件），或解压开发预览安装包。
+1. 从 [开发预览发行页](https://github.com/mingbochen/typora-axiom-theme/releases) 下载 CSS 或 ZIP；也可下载源码中的 [axiom.css](axiom.css)（文件页选择下载原始文件）。
 2. 在 Typora 中打开 **偏好设置 → 外观 → 打开主题文件夹**。
 3. 将 `axiom.css` 复制进去。
 4. 重启 Typora，在 **主题** 菜单中选择 **Axiom**。菜单大小写由 Typora 生成，可能因版本不同而略有差异。

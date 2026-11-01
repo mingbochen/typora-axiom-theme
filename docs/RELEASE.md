@@ -8,11 +8,15 @@ Resolve the intended owner and usable write authorization before publication. Do
 
 ## Preview release
 
-- Suggested tag: `v0.2.3`.
+- Preview tag: `v0.2.3-preview`.
 - Suggested title: `Axiom 0.2.3 — development preview`.
 - Attach `axiom-v0.2.3.zip` and its `.sha256` file.
 - State that screenshots are browser fixtures and native editor/export validation is pending.
 - README should show a real Typora screenshot once available; replace the clearly labeled browser preview at that point.
+
+The validation workflow publishes a **new prerelease only** after all required checks succeed, and only when a main-branch push commit explicitly contains `[preview release]`. Routine pushes and pull requests cannot enter that job. Publication uses the repository's ephemeral Actions token, scoped to the publishing job; no local user token is required.
+
+The job verifies the ZIP checksum and contained CSS, targets the exact validated commit, refuses an existing tag, never clobbers assets, and passes `--prerelease --latest=false`. Stable releases remain manual and gated by native QA. Notes come from `docs/PREVIEW_NOTES.md`.
 
 ## Before stable release
 

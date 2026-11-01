@@ -31,6 +31,11 @@ jobs:
       - run: npm run check:export
       - run: npm run build
       - uses: actions/upload-artifact@v4
+        with:
+          name: axiom-package
+          path: dist/*
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: theme-preview-and-browser-qa
@@ -40,5 +45,55 @@ jobs:
             tmp/pdfs/*.pdf
             dist/*
           if-no-files-found: warn
+
+  publish-preview:
+    needs: browser-and-package
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      github.repository == 'mingbochen/typora-axiom-theme' &&
+      contains(github.event.head_commit.message, '[preview release]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    concurrency:
+      group: axiom-preview-publication
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: axiom-package
+          path: release-input
+      - name: Verify and publish a new development preview
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(node -p "require('./package.json').version")"
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          tag="v${version}-preview"
+          archive="release-input/axiom-v${version}.zip"
+          checksum="${archive}.sha256"
+          test -f "$archive"
+          test -f "$checksum"
+          test -f axiom.css
+          (cd release-input && sha256sum --check "axiom-v${version}.zip.sha256")
+          unzip -t "$archive"
+          unzip -p "$archive" axiom/axiom.css | cmp - axiom.css
+          if gh api "repos/${GITHUB_REPOSITORY}/git/ref/tags/${tag}" >/dev/null 2>&1; then
+            echo "Tag already exists; refusing to replace an existing preview." >&2
+            exit 1
+          fi
+          gh release create "$tag" "$archive" "$checksum" axiom.css \
+            --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" \
+            --prerelease --latest=false \
+            --title "Axiom ${version} — development preview" \
+            --notes-file docs/PREVIEW_NOTES.md
 
 # Native Typora application QA is manual; browser CI does not establish it.
