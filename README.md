@@ -4,7 +4,7 @@
 
 一款依据浅色 ChatGPT 外观配置设计的独立主题：白色正文、黄色强调色、暖白侧栏、柔和的代码块和清晰的中文排版。安装只需要一个 CSS 文件，离线使用，无需字体下载或插件。
 
-> 当前版本：**0.2.0 开发预览**。已完成浏览器排版、Typora 基础样式及本机 MathJax / Mermaid 引擎的集成检查。真实 Typora 编辑交互与原生 PDF 导出仍待验证。当前样张属于浏览器开发夹具，不是 Typora 实机截图。
+> 当前版本：**0.2.1 开发预览**。已完成浏览器排版、Typora 基础样式及本机 MathJax / Mermaid 引擎的集成检查。真实 Typora 编辑交互与原生 PDF 导出仍待验证。当前样张属于浏览器开发夹具，不是 Typora 实机截图。
 
 ![浏览器排版预览，非 Typora 实机截图](docs/images/browser-preview.png)
 
@@ -79,6 +79,7 @@ pwsh -File scripts/install.ps1
 | Typora 基础 CSS + 代表性编辑器 DOM | 已检查代码行、任务复选框、源码区域及界面状态 |
 | 本机 MathJax / Mermaid 引擎的浏览器集成 | 已检查 3 种宽度，无公式解析错误及页面溢出 |
 | 浏览器 A4 打印样张 | 已检查换行、表格和分页；与原生导出分开记录 |
+| 代表性导出任务列表 | 已检查紧凑、段落、多行和嵌套形态，以及大字号下的首行对齐；与原生导出分开记录 |
 | 真实 Typora：光标、输入、任务复选框、表格编辑 | 待验证 |
 | 真实 Typora：公式、Mermaid、源码及专注模式 | 待验证 |
 | 原生 HTML / PDF 导出 | 待验证 |
@@ -91,12 +92,15 @@ pwsh -File scripts/install.ps1
 
 Node.js 20+、Python 3.10+。
 
+以下命令在克隆的仓库源码目录运行；安装 ZIP 是主题与使用文档包，不包含完整开发工具。
+
 ```sh
 npm install
 npx playwright install chromium
 npm run preview
 npm run capture
 npm run check
+npm run check:export
 npm run build
 ```
 

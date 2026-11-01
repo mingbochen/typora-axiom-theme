@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 — 2026-11-01
+
+- Fixed exported task checkboxes separating from paragraph-wrapped labels. Checkboxes now stay aligned with the first text line in tight, loose, nested and wrapped tasks, including large root fonts.
+- Applied pointer cursors to clickable file-tree, file-list, outline and sidebar-tab surfaces while preserving text cursors for rename fields.
+- Added portable export-DOM regression checks to CI, with an optional installed-Typora-base-CSS variant. Native application export validation remains pending.
+
 ## 0.2.0 — 2026-11-01
 
 Development preview aligned to the owner's actual ChatGPT theme export.

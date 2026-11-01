@@ -1,5 +1,13 @@
 # Verification record
 
+## 0.2.1 export task-list regression — completed 2026-11-01
+
+- Reproduced a real cascade defect in representative exported DOM with installed Typora base CSS: paragraph-wrapped task labels appeared about 30px below their checkboxes. The previous browser Markdown preview used tight lists and did not expose it.
+- Scoped the fix to `.typora-export #write`: positioned task controls beside the first text line, cleared inherited checkbox margins and removed only the first label paragraph's top margin. Editor task controls remain untouched.
+- Six screen/print cases cover 1100px / 390px widths and 16px / 24px root fonts, with tight, paragraph, wrapped and nested task shapes. Installed-base and portable variants passed after the fix.
+- Reviewed normal and narrow/large-font screenshots. This is representative DOM layout QA, not an invocation of Typora's native exporter.
+- Native CSS fixture also confirms pointer cursors on clickable file/outline surfaces and a non-pointer cursor in the search field.
+
 ## Browser fixture — completed 2026-11-01
 
 Tool: local Chrome via Playwright. Sample inputs: `examples/showcase.md` and `examples/stress-test.md`.

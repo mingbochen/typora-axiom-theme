@@ -28,6 +28,7 @@ jobs:
       - run: npm run check
       - run: npm run capture
       - run: npm run check:print
+      - run: npm run check:export
       - run: npm run build
       - uses: actions/upload-artifact@v4
         if: always()

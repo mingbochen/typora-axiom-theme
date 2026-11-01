@@ -1,5 +1,5 @@
 /*
- * Axiom · v0.2.0
+ * Axiom · v0.2.1
  * An independent Typora theme, inspired by the calm ChatGPT / Codex UI.
  * Original theme CSS · MIT License · see LICENSE.
  * No web fonts, JavaScript, remote assets, or plugin required.
@@ -340,6 +340,8 @@ body {
 .sidebar-tab.active { color: var(--axiom-heading); font-weight: 600; }
 .sidebar-tab.active::after { background: var(--axiom-accent); height: 2px; }
 .file-node-content, .outline-item, .file-list-item { border-radius: 0.4rem; }
+.file-node-content, .outline-item, .file-list-item, .sidebar-tab { cursor: pointer; }
+.file-node-content input { cursor: text; }
 .file-node-content { margin-right: 0.5rem; }
 .file-node-content:hover, .outline-item:hover, .file-list-item:hover { background: var(--axiom-hover); }
 .file-node-content.active, .file-list-item.active { background: var(--axiom-active); color: var(--axiom-heading); }
@@ -429,7 +431,16 @@ footer { color: var(--axiom-secondary); background: var(--axiom-bg); }
 
 /* 07 · Export. A clean white page, without application chrome. */
 .typora-export #write { padding-top: 1.5rem; padding-bottom: 2rem; }
-.typora-export .task-list-item input { position: static; margin-right: 0.5rem; vertical-align: middle; }
+.typora-export #write .task-list-item { position: relative; }
+.typora-export #write .task-list-item > input {
+    position: absolute;
+    left: -1.35rem;
+    top: calc((var(--axiom-body-leading) * 1em - 1em) / 2);
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+}
+.typora-export #write .task-list-item > p:first-of-type { margin-top: 0; }
 
 @media print {
     :root { --axiom-bg: #fff; --axiom-text: #1a1c1f; --axiom-code-bg: #f4f4f4; }
