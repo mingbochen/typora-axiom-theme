@@ -1,5 +1,12 @@
 # Verification record
 
+## 0.2.3 inline math regression — completed 2026-11-01
+
+- A normal conditional-probability expression with native inline wrappers extended a 390px page to 424px. Both wrappers and the installed MathJax engine were included in the fixture.
+- The fix bounds the outer inline preview and its SVG. It leaves the native container's display/overflow intact: short superscript/subscript expression width and baseline remain unchanged at three widths.
+- Verified native expansion CSS still hides preview and shows raw math. This checks CSS states only, not live typing/selection in Typora.
+- Inline math may scale down on narrow pages; use display math to retain font size with local scrolling for complex expressions.
+
 ## 0.2.2 file-tree scaling regression — completed 2026-11-01
 
 - The installed control stylesheet retains a 22px file-tree line box and a separate 29px-high selection background. At a 24px root the theme's sidebar font becomes 21px: multiline Chinese/Latin filenames were crowded, while the old background protruded outside the rounded selection.

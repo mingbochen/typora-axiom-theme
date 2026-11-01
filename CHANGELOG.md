@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.3 — 2026-11-01
+
+- Fixed ordinary long inline MathJax expressions extending past narrow pages by bounding the preview SVG while preserving native inline container layout.
+- Added real-engine checks for normal-expression baseline/width preservation, narrow-page containment and native preview/raw expansion CSS.
+
 ## 0.2.2 — 2026-11-01
 
 - Fixed the native file-tree selection layer protruding beyond rounded active rows, especially on wrapped filenames.

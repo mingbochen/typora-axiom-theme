@@ -1,5 +1,5 @@
 /*
- * Axiom · v0.2.2
+ * Axiom · v0.2.3
  * An independent Typora theme, inspired by the calm ChatGPT / Codex UI.
  * Original theme CSS · MIT License · see LICENSE.
  * No web fonts, JavaScript, remote assets, or plugin required.
@@ -297,6 +297,12 @@ body {
 
 #write .md-math-block { margin: 1.5rem 0; padding: 0.3rem 0; }
 #write .md-mathjax-preview { color: var(--axiom-text); }
+/* Bound only preview SVGs: changing inline container overflow shifts math baselines. */
+#write .md-inline-math { max-width: 100%; }
+#write .md-inline-math-container > mjx-container[jax="SVG"]:not([display="true"]) > svg {
+    max-width: 100%;
+    height: auto;
+}
 #write .mathjax-block, #write .md-mathjax-preview {
     max-width: 100%;
     overflow-x: auto;

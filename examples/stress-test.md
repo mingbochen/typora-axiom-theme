@@ -87,6 +87,8 @@ python benchmark.py --input-length 1024 --output-length 256
 
 行内表达式 $\mathrm{softmax}(QK^T/\sqrt{d})V$ 与正文混排。
 
+较长行内表达式：$p_\theta(x_t\mid x_1,\ldots,x_{t-1})=\frac{\exp((Wh_t)_{x_t})}{\sum_{v\in\mathcal V}\exp((Wh_t)_v)}$，不应撑宽整页。复杂公式若要保持原字号，宜使用下面的块级形式。
+
 $$
 \operatorname{Attention}(Q,K,V) = \operatorname{softmax}\left(\frac{QK^{\mathsf T}}{\sqrt{d_k}}\right)V
 $$
