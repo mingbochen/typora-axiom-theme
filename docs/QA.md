@@ -1,5 +1,12 @@
 # Verification record
 
+## 0.2.4 focus-mode print regression — completed 2026-11-01
+
+- Installed control CSS dims inactive text/code to `#c8c8c8`, images/diagrams to 0.3 opacity and task controls to 0.2. A representative focus-mode DOM retained that dimming in browser print media.
+- Print-only overrides now restore ink and full image/diagram/task opacity. Both screen and print states pass: screen focus behavior remains unchanged.
+- This verifies installed CSS in browser print media. It does not establish how Typora's native exporter prepares its DOM; native export acceptance is still pending.
+- Run locally with `TYPORA_RESOURCES` set: `npm run check:focus-print`. Installed styles are read-only development inputs and are not redistributed.
+
 ## 0.2.3 inline math regression — completed 2026-11-01
 
 - A normal conditional-probability expression with native inline wrappers extended a 390px page to 424px. Both wrappers and the installed MathJax engine were included in the fixture.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.4 — 2026-11-01
+
+- Prevented editing focus mode from washing out printed text, code, images, diagrams and task controls; screen focus behavior remains native.
+- Matched link underlines to the link's actual color, including user overrides, instead of retaining an old blue tint.
+- Added installed-CSS screen/print focus-state regression coverage; native editor/export acceptance remains pending.
+
 ## 0.2.3 — 2026-11-01
 
 - Fixed ordinary long inline MathJax expressions extending past narrow pages by bounding the preview SVG while preserving native inline container layout.
