@@ -1,0 +1,29 @@
+name: Theme bug / 排版问题
+description: Report a reproducible Typora theme issue.
+body:
+  - type: input
+    id: environment
+    attributes:
+      label: Environment / 环境
+      description: OS, Typora version and theme version.
+      placeholder: Windows 11 · Typora 1.9.5 · theme 0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps and minimal Markdown / 复现步骤与最小样例
+      description: Include the smallest Markdown sample that demonstrates the issue. Remove personal or private content.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual result / 预期与实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot / 截图
+      description: Include the affected region and mention app zoom, fonts, user CSS and plugins if relevant.

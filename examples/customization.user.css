@@ -1,0 +1,15 @@
+/* Copy this file as axiom.user.css into your Typora theme folder.
+ * Change only the variables you need; the installed theme remains updateable.
+ */
+:root {
+    --axiom-content-width: 53rem;
+    --axiom-body-leading: 1.8;
+    --axiom-code-leading: 1.65;
+    --axiom-radius: 0.75rem;
+
+    /* Optional examples:
+    --axiom-ui-font: "Segoe UI", "Microsoft YaHei", sans-serif;
+    --axiom-code-font: "Cascadia Code", Consolas, monospace;
+    --axiom-link: #2563a6;
+    */
+}

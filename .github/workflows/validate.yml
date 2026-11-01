@@ -1,0 +1,43 @@
+name: Theme validation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-and-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Install Chinese fonts for development screenshots
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - run: npm run check
+      - run: npm run capture
+      - run: npm run check:print
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: theme-preview-and-browser-qa
+          path: |
+            artifacts/*.json
+            artifacts/*.png
+            tmp/pdfs/*.pdf
+            dist/*
+          if-no-files-found: warn
+
+# Native Typora application QA is manual; browser CI does not establish it.
