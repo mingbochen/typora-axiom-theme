@@ -1,5 +1,11 @@
 # Verification record
 
+## 0.2.6 typewriter print regression — completed 2026-11-01
+
+- Native control CSS gives `#write.typewriter-mode` a 50% top padding with `!important`. With the theme's previous normal print reset, a 672px fixture retained 334px of blank space before the first printed heading.
+- A print-only override now clears that padding with the matching required priority and disables the native padding transition during printing. Screen typewriter centering remains unchanged; the fixture waits for its native transition to finish before measuring it.
+- The optional installed-CSS `check:focus-print` now verifies typewriter spacing as well as focus text/media states in both screen and print media. This remains representative DOM integration, not native export acceptance.
+
 ## 0.2.5 long-token table print regression — completed 2026-11-01
 
 - With installed base CSS, three unbroken identifiers expanded a four-column table to 1053px inside a 668px print region. The last cell extended beyond the printable right edge.

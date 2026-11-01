@@ -1,5 +1,5 @@
 /*
- * Axiom · v0.2.5
+ * Axiom · v0.2.6
  * An independent Typora theme, inspired by the calm ChatGPT / Codex UI.
  * Original theme CSS · MIT License · see LICENSE.
  * No web fonts, JavaScript, remote assets, or plugin required.
@@ -476,7 +476,9 @@ footer { color: var(--axiom-secondary); background: var(--axiom-bg); }
     .on-focus-mode #write .md-task-list-item > input { opacity: 1; }
     html { font-size: 11pt; }
     body { background: #fff; color: #1a1c1f; }
-    #write { max-width: none; margin: 0; padding: 0; }
+    #write { max-width: none; margin: 0; padding: 0; transition: none; }
+    /* Native typewriter padding is important; it belongs only to the screen. */
+    #write.typewriter-mode { padding-top: 0 !important; }
     #write h1, #write h2, #write h3, #write h4, #write h5, #write h6 { break-after: avoid-page; }
     #write p, #write li { orphans: 3; widows: 3; }
     #write pre.md-fences, #write > pre:not(.md-fences), #write blockquote, #write figure { break-inside: auto; }

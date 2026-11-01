@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.6 — 2026-11-01
+
+- Removed native typewriter mode's half-window top padding from print styles while preserving screen centering.
+- Extended installed-CSS print-mode checks to verify both focus dimming and typewriter spacing across screen/print states.
+
 ## 0.2.5 — 2026-11-01
 
 - Fixed long plain identifiers forcing printed tables beyond the paper width. Print cells can break long tokens; screen tables retain native local scrolling and original text flow.
