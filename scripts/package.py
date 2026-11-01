@@ -28,6 +28,9 @@ def main():
         for name in sorted(FILES):
             data = (ROOT / name).read_bytes()
             info = ZipInfo(f'axiom/{name}', date_time=(2026, 11, 1, 0, 0, 0))
+            # Pin the creator OS: ZipInfo otherwise embeds the build host's OS,
+            # changing Windows/Linux hashes despite byte-identical payloads.
+            info.create_system = 3
             info.compress_type = ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             output.writestr(info, data)
