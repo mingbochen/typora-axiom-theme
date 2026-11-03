@@ -8,7 +8,7 @@
 - Contrast audit: 4.92 / 4.87 / 5.80 / 5.52 / 5.84:1 for the note / tip / important / warning / caution labels on their own surfaces, all above 4.5:1.
 - Print: seven alerts across the showcase and stress fixtures stay inside the 672px A4 content width, keep `break-inside: avoid` and retain their tinted surfaces with `print-color-adjust: exact`.
 - The committed preview fixture mirrors the same Octicon paths (MIT) so browser samples match Typora; the theme itself does not bundle icons or assets.
-- This remains DOM / CSS integration evidence. Native Typora rendering of the labels, icons and edit-mode meta text is still an open visual check.
+- Owner visually confirmed the alert cards, icons and labels in Typora 1.9.5 on 2026-11-03. Edit-mode meta text, caret behaviour and native print/export remain separate pending checks.
 
 ## 0.2.6 typewriter print regression — completed 2026-11-01
 
@@ -69,12 +69,13 @@ The browser fixture uses an illustrative sidebar, a small test syntax highlighte
 
 ## Native Typora — pending
 
-Local installation found: Windows Typora 1.9.5. The theme file was installed. Initial Computer Use state capture timed out; a later capture showed the existing document under its old theme, but subsequent screenshots did not match the target window. Input automation was stopped. No successful loading or editing of this theme in the native app has been recorded.
+Local installation found: Windows Typora 1.9.5. The theme file is installed and in active use; the owner confirmed the themed alert cards, icons and labels on 2026-11-03. Earlier automated window capture failed, so the checklist below remains a manual gate for the rest of the native surface.
 
-- [ ] Load theme through Typora's Themes menu.
+- [x] Load theme through Typora's Themes menu.
 - [ ] Check typing/caret, code focus/blur, language selector, line numbers, long-line scrolling.
 - [ ] Check task toggle, nested lists and table editing controls.
-- [ ] Check alert labels, icons and edit-mode meta text at screen and print sizes.
+- [x] Check alert cards, icons and labels in the editor (owner confirmed 2026-11-03).
+- [ ] Check alert edit-mode meta text and native print/export.
 - [ ] Check math, Mermaid and local images.
 - [ ] Check source/focus/typewriter modes.
 - [ ] Check file tree, outline, search, dropdowns and common dialogs.

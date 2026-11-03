@@ -4,7 +4,7 @@
 
 - Themed Typora 1.8+ GitHub-style alerts (Note / Tip / Important / Warning / Caution) as soft tinted cards with a hairline semantic border, replacing the stock saturated left bar. Typora keeps rendering its own label, icon and editing markup.
 - Added alert colour tokens, a glyph-accurate preview fixture and contrast/overflow checks for all five types; print keeps the tint and avoids splitting a card across pages.
-- Added alert examples to the showcase and stress documents. Native Typora alert rendering remains pending visual confirmation.
+- Added alert examples to the showcase and stress documents. The alert cards and labels were visually confirmed in Typora 1.9.5 on 2026-11-03.
 
 ## 0.2.6 — 2026-11-01
 
