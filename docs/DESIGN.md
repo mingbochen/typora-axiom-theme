@@ -1,4 +1,4 @@
-# Visual specification · 0.2.3
+# Visual specification · 0.2.7
 
 ## Reference and evidence
 
@@ -24,6 +24,12 @@ The initial 0.1.0 interpretation from historical saved configuration is supersed
 | Border | #ededee | Reference low-opacity ink approximation |
 
 Local App palette declarations were read without redistributing its assets: keyword #ab4f7a, literal #ac4f23, string #3a843f, variable #643cae, name #1f4e94, attribute #b8802b. CodeMirror5 token categories cannot exactly reproduce the App's newer engine. String and attribute pairs fall below4.5:1 on this code surface; the audit records these as explicit reference exceptions, not accessibility passes.
+
+## Alerts
+
+Typora1.8+ renders `> [!TYPE]` as its own `div.md-alert` plus a native icon-and-label span; Axiom keeps that DOM and its icons instead of reimplementing the syntax. The stock saturated left bar is replaced by a pale per-type surface, a hairline semantic border and a coloured label: note #3f6ea3 on #f3f7fc, tip #327a50 on #f2f9f5, important #6f4bb0 on #f7f3fd, warning #8a5a12 on #fcf7e9, caution #a63a40 on #fdf3f3. Body copy keeps the ink colour.
+
+Labels are0.875rem semibold at1.5 leading; the native svg inherits currentColor. Colour is not the only signal — the icon and the capitalised label remain. All five label/surface pairs are measured at4.5:1 or above in the browser fixture. Cards use a0.6rem radius,0.8rem/1rem padding and no decorative bar, matching the quiet code and TOC surfaces. A card never splits across printed pages unless it is taller than the page.
 
 ## Fonts and rhythm
 

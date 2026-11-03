@@ -34,6 +34,11 @@ function contrast(a, b) { const x = luminance(a), y = luminance(b); return (Math
         const code = write.querySelector('pre.md-fences:not([lang="mermaid"])');
         const figure = write.querySelector('figure');
         const style = getComputedStyle(write);
+        const alerts = [...write.querySelectorAll('.md-alert')].map(alert => ({
+          width: alert.getBoundingClientRect().width,
+          scrollWidth: alert.scrollWidth,
+          labelColor: getComputedStyle(alert.querySelector('.md-alert-text')).color
+        }));
         return {
           documentWidth: document.documentElement.clientWidth,
           documentScrollWidth: document.documentElement.scrollWidth,
@@ -42,10 +47,12 @@ function contrast(a, b) { const x = luminance(a), y = luminance(b); return (Math
           codeFont: getComputedStyle(code).fontSize,
           codeClientWidth: code.clientWidth, codeScrollWidth: code.scrollWidth,
           figureClientWidth: figure?.clientWidth, figureScrollWidth: figure?.scrollWidth,
+          alerts,
           parsedThemeRules: [...document.styleSheets].filter(s => s.ownerNode.id === 'theme-css').map(s => s.cssRules.length)[0]
         };
       });
-      const pass = measure.documentScrollWidth <= width + 1 && measure.parsedThemeRules > 0 && externalRequests.length === 0;
+      const alertsFit = measure.alerts.length > 0 && measure.alerts.every(alert => alert.scrollWidth <= Math.ceil(alert.width) + 1);
+      const pass = measure.documentScrollWidth <= width + 1 && measure.parsedThemeRules > 0 && externalRequests.length === 0 && alertsFit;
       report.cases.push({ name, width, height, deviceScaleFactor: scale, ...measure, externalRequests, pass });
       if (!pass) report.errors.push(`Layout/resources failed: ${name} @ ${width} / ${scale}`);
       const tag = `${name}-${width}${scale !== 1 ? `-dpr${scale}` : ''}`;
@@ -53,7 +60,7 @@ function contrast(a, b) { const x = luminance(a), y = luminance(b); return (Math
       if (name === 'showcase' && width === 1440 && scale === 1) {
         palette = await page.evaluate(() => {
           const style=getComputedStyle(document.documentElement);
-          const names=['bg','text','heading','secondary','muted','sidebar','link','code-bg','selection','accent','on-accent','syntax-comment','syntax-keyword','syntax-string','syntax-number','syntax-name','syntax-attribute'];
+          const names=['bg','text','heading','secondary','muted','sidebar','link','code-bg','selection','accent','on-accent','syntax-comment','syntax-keyword','syntax-string','syntax-number','syntax-name','syntax-attribute','alert-note','alert-note-bg','alert-tip','alert-tip-bg','alert-important','alert-important-bg','alert-warning','alert-warning-bg','alert-caution','alert-caution-bg'];
           return Object.fromEntries(names.map(name=>[name,style.getPropertyValue('--axiom-'+name).trim()]));
         });
         await page.screenshot({path: path.join(root, 'artifacts', 'showcase-first-screen.png')});
@@ -73,6 +80,11 @@ function contrast(a, b) { const x = luminance(a), y = luminance(b); return (Math
       ['code number', palette['syntax-number'], palette['code-bg']], ['code definition', palette['syntax-name'], palette['code-bg']],
       ['code attribute', palette['syntax-attribute'], palette['code-bg'],false],
       ['selected text', palette.heading, palette.selection], ['language label', palette.secondary, palette['code-bg']],
+      ['alert note label', palette['alert-note'], palette['alert-note-bg']],
+      ['alert tip label', palette['alert-tip'], palette['alert-tip-bg']],
+      ['alert important label', palette['alert-important'], palette['alert-important-bg']],
+      ['alert warning label', palette['alert-warning'], palette['alert-warning-bg']],
+      ['alert caution label', palette['alert-caution'], palette['alert-caution-bg']],
       ['accent button',palette['on-accent'],palette.accent]
     ]) {
       const ratio = contrast(foreground, background);

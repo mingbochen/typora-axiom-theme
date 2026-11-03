@@ -1,5 +1,5 @@
 /*
- * Axiom · v0.2.6
+ * Axiom · v0.2.7
  * An independent Typora theme, inspired by the calm ChatGPT / Codex UI.
  * Original theme CSS · MIT License · see LICENSE.
  * No web fonts, JavaScript, remote assets, or plugin required.
@@ -32,6 +32,16 @@
     --axiom-diff-added: #00a240;
     --axiom-diff-removed: #ba2623;
     --axiom-skill: #924ff7;
+    --axiom-alert-note: #3f6ea3;
+    --axiom-alert-note-bg: #f3f7fc;
+    --axiom-alert-tip: #327a50;
+    --axiom-alert-tip-bg: #f2f9f5;
+    --axiom-alert-important: #6f4bb0;
+    --axiom-alert-important-bg: #f7f3fd;
+    --axiom-alert-warning: #8a5a12;
+    --axiom-alert-warning-bg: #fcf7e9;
+    --axiom-alert-caution: #a63a40;
+    --axiom-alert-caution-bg: #fdf3f3;
     --axiom-ui-font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --axiom-code-font: ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
     --axiom-syntax-comment: #687078;
@@ -160,6 +170,40 @@ body {
 #write blockquote > :first-child { margin-top: 0; }
 #write blockquote > :last-child { margin-bottom: 0; }
 #write blockquote blockquote { margin: 0.75rem 0; }
+
+/* Typora 1.8+ GitHub-style alerts. The label and icon stay native; only the surface is themed. */
+#write .md-alert {
+    --axiom-alert-accent: var(--axiom-secondary);
+    --axiom-alert-surface: var(--axiom-subtle);
+    margin: 1.35rem 0;
+    padding: 0.8rem 1rem 0.85rem;
+    border: 1px solid color-mix(in srgb, var(--axiom-alert-accent) 24%, var(--axiom-bg));
+    border-radius: 0.6rem;
+    background: var(--axiom-alert-surface);
+    color: var(--axiom-text);
+}
+#write .md-alert-note { --axiom-alert-accent: var(--axiom-alert-note); --axiom-alert-surface: var(--axiom-alert-note-bg); }
+#write .md-alert-tip { --axiom-alert-accent: var(--axiom-alert-tip); --axiom-alert-surface: var(--axiom-alert-tip-bg); }
+#write .md-alert-important { --axiom-alert-accent: var(--axiom-alert-important); --axiom-alert-surface: var(--axiom-alert-important-bg); }
+#write .md-alert-warning { --axiom-alert-accent: var(--axiom-alert-warning); --axiom-alert-surface: var(--axiom-alert-warning-bg); }
+#write .md-alert-caution { --axiom-alert-accent: var(--axiom-alert-caution); --axiom-alert-surface: var(--axiom-alert-caution-bg); }
+#write .md-alert > :first-child { margin-top: 0; }
+#write .md-alert > :last-child { margin-bottom: 0; }
+#write .md-alert > p { margin: 0 0 0.5rem; }
+#write .md-alert .md-alert-text {
+    display: block;
+    margin: 0;
+    color: var(--axiom-alert-accent);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+}
+#write .md-alert .md-alert-text svg { margin-right: 0.45em; }
+/* Label and body can share a paragraph; the native break only duplicates the block gap. */
+#write .md-alert .md-alert-text + br { display: none; }
+#write .md-alert > ul, #write .md-alert > ol { margin: 0.4rem 0 0.5rem; }
+#write .md-alert > pre.md-fences { margin: 0.65rem 0; }
 #write hr { height: 1px; border: 0; background: var(--axiom-border); margin: 2rem 0; }
 
 /* 03 · Code. Keep native CodeMirror whitespace, line geometry and controls intact. */
@@ -449,6 +493,7 @@ footer { color: var(--axiom-secondary); background: var(--axiom-bg); }
     #write th, #write td { padding: 0.6rem 0.7rem; }
     #write pre.md-fences, #write > pre:not(.md-fences):not(.md-meta-block) { padding-left: 1rem; padding-right: 1rem; }
     #write pre.md-fences[lang]:not([lang=""])::before { left: 1rem; }
+    #write .md-alert { padding: 0.7rem 0.85rem 0.75rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -482,6 +527,7 @@ footer { color: var(--axiom-secondary); background: var(--axiom-bg); }
     #write h1, #write h2, #write h3, #write h4, #write h5, #write h6 { break-after: avoid-page; }
     #write p, #write li { orphans: 3; widows: 3; }
     #write pre.md-fences, #write > pre:not(.md-fences), #write blockquote, #write figure { break-inside: auto; }
+    #write .md-alert { break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     #write pre.md-fences { white-space: pre-wrap; overflow-wrap: anywhere; }
     #write pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
     #write .CodeMirror pre { white-space: pre-wrap; overflow-wrap: anywhere; }

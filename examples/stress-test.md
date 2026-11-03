@@ -80,6 +80,19 @@ python benchmark.py --input-length 1024 --output-length 256
 > >
 > > 包含 `inline code` 和 **加粗**。
 
+> [!NOTE]
+> 提示框中的长标识符必须换行，不能撑宽页面：`alert_with_a_very_long_identifier_that_should_wrap_inside_the_surface_without_widening_the_document`。
+
+> [!WARNING]
+> 提示框可以包含列表与代码：
+>
+> 1. 确认当前没有正在写入的任务
+> 2. 记录修改前的配置
+>
+> ```bash
+> python benchmark.py --dry-run
+> ```
+
 - [ ] 未完成任务。
 - [x] 已完成任务。
   - [ ] 嵌套任务：检查点击与光标位置。

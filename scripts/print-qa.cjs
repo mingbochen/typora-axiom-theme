@@ -19,10 +19,10 @@ fs.mkdirSync(output,{recursive:true});
       await page.evaluate(()=>document.fonts.ready);
       const measurements=await page.evaluate(()=>{
         const write=document.querySelector('#write').getBoundingClientRect();
-        return {bodyFont:getComputedStyle(document.querySelector('#write')).fontSize,sidebar:getComputedStyle(document.querySelector('.preview-sidebar')).display,titlebar:getComputedStyle(document.querySelector('.preview-titlebar')).display,codeWhitespace:getComputedStyle(document.querySelector('pre.md-fences')).whiteSpace,tables:[...document.querySelectorAll('#write table')].map(table=>{const r=table.getBoundingClientRect();return {width:r.width,available:write.width,rightOverflow:Math.max(0,r.right-write.right)};})};
+        return {bodyFont:getComputedStyle(document.querySelector('#write')).fontSize,sidebar:getComputedStyle(document.querySelector('.preview-sidebar')).display,titlebar:getComputedStyle(document.querySelector('.preview-titlebar')).display,codeWhitespace:getComputedStyle(document.querySelector('pre.md-fences')).whiteSpace,tables:[...document.querySelectorAll('#write table')].map(table=>{const r=table.getBoundingClientRect();return {width:r.width,available:write.width,rightOverflow:Math.max(0,r.right-write.right)};}),alerts:[...document.querySelectorAll('#write .md-alert')].map(alert=>{const r=alert.getBoundingClientRect();const s=getComputedStyle(alert);return {width:r.width,rightOverflow:Math.max(0,r.right-write.right),background:s.backgroundColor,breakInside:s.breakInside};})};
       });
       await page.pdf({path:path.join(output,`${name}.pdf`),format:'A4',printBackground:true,margin:{top:'18mm',right:'16mm',bottom:'18mm',left:'16mm'}});
-      report.cases.push({name,...measurements,pass:measurements.sidebar==='none'&&measurements.titlebar==='none'&&measurements.codeWhitespace==='pre-wrap'&&measurements.tables.every(t=>t.width<=t.available+1&&t.rightOverflow<=1)});
+      report.cases.push({name,...measurements,pass:measurements.sidebar==='none'&&measurements.titlebar==='none'&&measurements.codeWhitespace==='pre-wrap'&&measurements.tables.every(t=>t.width<=t.available+1&&t.rightOverflow<=1)&&measurements.alerts.length>0&&measurements.alerts.every(a=>a.rightOverflow<=1&&a.breakInside==='avoid'&&a.background!=='rgba(0, 0, 0, 0)')});
       await page.close();
     }
     report.pass=report.cases.every(c=>c.pass);

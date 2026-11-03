@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.7 — 2026-11-03
+
+- Themed Typora 1.8+ GitHub-style alerts (Note / Tip / Important / Warning / Caution) as soft tinted cards with a hairline semantic border, replacing the stock saturated left bar. Typora keeps rendering its own label, icon and editing markup.
+- Added alert colour tokens, a glyph-accurate preview fixture and contrast/overflow checks for all five types; print keeps the tint and avoids splitting a card across pages.
+- Added alert examples to the showcase and stress documents. Native Typora alert rendering remains pending visual confirmation.
+
 ## 0.2.6 — 2026-11-01
 
 - Removed native typewriter mode's half-window top padding from print styles while preserving screen centering.

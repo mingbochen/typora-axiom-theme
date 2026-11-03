@@ -1,5 +1,15 @@
 # Verification record
 
+## 0.2.7 alert surface — completed 2026-11-03
+
+- Native evidence: installed Typora 1.9.5 `base.css` styles `.md-alert` plus per-type border/text colours, and `frame.js` renders `<div class="md-alert md-alert-*">` around a native icon-and-label span (edit mode nests `.md-alert-text-container[data-text]` and supplies the label through `::after`; export mode writes the label text inline). The theme styles only the surface and keeps that markup, icon and editing behaviour.
+- The stock saturated left bar is replaced by a pale per-type surface, a hairline semantic border and a coloured label: note `#3f6ea3` / `#f3f7fc`, tip `#327a50` / `#f2f9f5`, important `#6f4bb0` / `#f7f3fd`, warning `#8a5a12` / `#fcf7e9`, caution `#a63a40` / `#fdf3f3`. Body copy keeps the ink colour.
+- A dedicated fixture loads installed `base.css` with both edit and export alert markup (12 alerts per case) at 1440 / 640 / 390px. No document or card overflow; labels compute to 14px / 600; the native `::after` still supplies the capitalised label.
+- Contrast audit: 4.92 / 4.87 / 5.80 / 5.52 / 5.84:1 for the note / tip / important / warning / caution labels on their own surfaces, all above 4.5:1.
+- Print: seven alerts across the showcase and stress fixtures stay inside the 672px A4 content width, keep `break-inside: avoid` and retain their tinted surfaces with `print-color-adjust: exact`.
+- The committed preview fixture mirrors the same Octicon paths (MIT) so browser samples match Typora; the theme itself does not bundle icons or assets.
+- This remains DOM / CSS integration evidence. Native Typora rendering of the labels, icons and edit-mode meta text is still an open visual check.
+
 ## 0.2.6 typewriter print regression — completed 2026-11-01
 
 - Native control CSS gives `#write.typewriter-mode` a 50% top padding with `!important`. With the theme's previous normal print reset, a 672px fixture retained 334px of blank space before the first printed heading.
@@ -64,6 +74,7 @@ Local installation found: Windows Typora 1.9.5. The theme file was installed. In
 - [ ] Load theme through Typora's Themes menu.
 - [ ] Check typing/caret, code focus/blur, language selector, line numbers, long-line scrolling.
 - [ ] Check task toggle, nested lists and table editing controls.
+- [ ] Check alert labels, icons and edit-mode meta text at screen and print sizes.
 - [ ] Check math, Mermaid and local images.
 - [ ] Check source/focus/typewriter modes.
 - [ ] Check file tree, outline, search, dropdowns and common dialogs.
