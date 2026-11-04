@@ -8,6 +8,18 @@
 
 ![浏览器排版预览，非 Typora 实机截图](docs/images/browser-preview.png)
 
+## English overview
+
+Axiom is a quiet light Typora theme inspired by the ChatGPT / Codex reading experience: a white page, a warm sidebar, a single yellow accent, muted syntax colours and soft GitHub-style callouts. One CSS file, no web fonts, scripts or remote assets.
+
+- 16px body text, an 800px reading measure and Chinese-first system font stacks (Segoe UI / Microsoft YaHei / Consolas on Windows).
+- Styled code fences, tables, task lists, TOC, footnotes, math and Mermaid previews.
+- Note / Tip / Important / Warning / Caution callouts as pale semantic cards, with Typora's native icons and labels.
+- Sidebar, outline, dialogs, source mode and print / PDF styles included.
+- Requires Typora 1.8+; tested on Windows Typora 1.9.5. macOS and Linux are not yet verified. MIT licensed.
+
+Install: download `axiom.css` from the [preview releases](https://github.com/mingbochen/typora-axiom-theme/releases), open **Preferences → Appearance → Open Theme Folder**, copy the file there, restart Typora, then choose **Axiom** from the Themes menu.
+
 ## 设计
 
 - **安静的阅读区域。** 正文与代码默认 16px，正文最大可用宽度约 800px；标题、段落与列表保持清晰节奏。
