@@ -69,7 +69,7 @@ The browser fixture uses an illustrative sidebar, a small test syntax highlighte
 
 ## Native Typora — partial run, 2026-11-04
 
-Environment: Windows 11 25H2 (build 26200), Typora 1.9.5, installed `axiom.css` v0.2.7, window 1064×831 at 100% zoom. The run used a disposable document under ignored `artifacts/native-qa/`; no owner files were opened.
+Environment: Windows 11 25H2 (build 26200), Typora 1.9.5, installed `axiom.css` v0.2.7, window 1064×831. Started at 100% zoom; Typora's 120 / 144 / 172% steps were also checked. The run used a disposable document under ignored `artifacts/native-qa/`; no owner files were opened.
 
 - The installed theme loads and applies to headings, body, code, tables, lists, callouts, sidebar and outline.
 - Body typing and caret: Chinese paste and Latin typing insert at the caret; word count updates and autosave writes the test file.
@@ -79,17 +79,19 @@ Environment: Windows 11 25H2 (build 26200), Typora 1.9.5, installed `axiom.css` 
 - Blockquotes (including nested), lists, inline code, links and footnotes render.
 - Math: inline, display and a wide matrix; Mermaid flowchart; local SVG image (800×176).
 - Source mode, focus mode and typewriter mode toggle correctly; theme chrome and native dimming behave as expected.
+- Application zoom: Typora's 120% / 144% / 172% steps kept the document column, sidebar and callouts intact without clipping. Typora steps by 1.2×, so 125% and 150% are not discrete values.
 - Search: query typed in the panel, hit highlighted, Enter jumps; the outline navigates headings.
 - Native Export → HTML: 675,428 bytes. The export embeds the theme CSS and keeps `div#write`; six `.md-alert` cards measure 800px with the expected surfaces, three MathJax containers, Mermaid SVG and the local image are present; no page-level overflow or JS errors.
 - Native Export → PDF: A4, 4 pages, 267,894 bytes. All four rendered pages reviewed: code wraps inside its block, the table fits, every callout stays whole across page breaks, and math, Mermaid, image and footnote print correctly.
 
 Not covered by this run:
 
-- Application zoom at 100 / 125 / 150% (the window ran at 100%).
 - Table cell editing and column/row drag controls.
-- Language-selector popup, line numbers (disabled in this profile) and long-line horizontal scrolling.
+- Language-selector popup, line numbers (disabled in this profile) and long-line horizontal scrolling; code focus was exercised, blur was not confirmed separately.
 - File-tree interactions and common dialogs beyond the export save dialog; search and outline were exercised, dropdowns were not.
 - A native export of a full real document rather than the QA fixture.
+
+The agent shell could not relaunch Typora after the app was closed at the end of the run (the process exits immediately). These remaining interactive checks need a Typora window launched in the user's desktop session.
 
 Evidence: screenshots plus the exported HTML/PDF under ignored `artifacts/native-qa/`; not shipped.
 
@@ -106,7 +108,7 @@ Evidence: screenshots plus the exported HTML/PDF under ignored `artifacts/native
 - [ ] Check code blur, language selector popup, line numbers and horizontal scrolling.
 - [ ] Check table cell editing and table controls.
 - [ ] Check file-tree interactions, dropdowns and common dialogs.
-- [ ] Check actual application zoom at 100%, 125%, 150%.
+- [x] Check application zoom at Typora's 120 / 144 / 172% steps (100% base).
 - [ ] Export a full real document to HTML and PDF.
 
 ## Release gate
