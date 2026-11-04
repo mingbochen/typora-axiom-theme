@@ -8,7 +8,7 @@
 - Contrast audit: 4.92 / 4.87 / 5.80 / 5.52 / 5.84:1 for the note / tip / important / warning / caution labels on their own surfaces, all above 4.5:1.
 - Print: seven alerts across the showcase and stress fixtures stay inside the 672px A4 content width, keep `break-inside: avoid` and retain their tinted surfaces with `print-color-adjust: exact`.
 - The committed preview fixture mirrors the same Octicon paths (MIT) so browser samples match Typora; the theme itself does not bundle icons or assets.
-- Owner visually confirmed the alert cards, icons and labels in Typora 1.9.5 on 2026-11-03. Edit-mode meta text, caret behaviour and native print/export remain separate pending checks.
+- Owner visually confirmed the alert cards, icons and labels in Typora 1.9.5 on 2026-11-03. Edit-mode meta text, caret behaviour and native print/export were subsequently confirmed in the 2026-11-04 native run below.
 
 ## 0.2.6 typewriter print regression — completed 2026-11-01
 
@@ -67,21 +67,47 @@ Tool: local Chrome via Playwright. Sample inputs: `examples/showcase.md` and `ex
 
 The browser fixture uses an illustrative sidebar, a small test syntax highlighter and a local SVG instead of a Mermaid engine. It leaves math as raw markup. These checks establish layout behavior, not real Typora editor compatibility.
 
-## Native Typora — pending
+## Native Typora — partial run, 2026-11-04
 
-Local installation found: Windows Typora 1.9.5. The theme file is installed and in active use; the owner confirmed the themed alert cards, icons and labels on 2026-11-03. Earlier automated window capture failed, so the checklist below remains a manual gate for the rest of the native surface.
+Environment: Windows 11 25H2 (build 26200), Typora 1.9.5, installed `axiom.css` v0.2.7, window 1064×831 at 100% zoom. The run used a disposable document under ignored `artifacts/native-qa/`; no owner files were opened.
 
-- [x] Load theme through Typora's Themes menu.
-- [ ] Check typing/caret, code focus/blur, language selector, line numbers, long-line scrolling.
-- [ ] Check task toggle, nested lists and table editing controls.
-- [x] Check alert cards, icons and labels in the editor (owner confirmed 2026-11-03).
-- [ ] Check alert edit-mode meta text and native print/export.
-- [ ] Check math, Mermaid and local images.
-- [ ] Check source/focus/typewriter modes.
-- [ ] Check file tree, outline, search, dropdowns and common dialogs.
+- The installed theme loads and applies to headings, body, code, tables, lists, callouts, sidebar and outline.
+- Body typing and caret: Chinese paste and Latin typing insert at the caret; word count updates and autosave writes the test file.
+- Code blocks: `python` language label, syntax colours, focus caret and code tooltip; the long line stays inside the block without widening the document.
+- Task lists: clicking a checkbox toggles it with the yellow accent; nested and multi-line items keep their alignment.
+- Callouts: all five types, the label-only card, the Important list, and the native `[!TIP]` edit-marker state render inside the pale cards without breaking the layout.
+- Blockquotes (including nested), lists, inline code, links and footnotes render.
+- Math: inline, display and a wide matrix; Mermaid flowchart; local SVG image (800×176).
+- Source mode, focus mode and typewriter mode toggle correctly; theme chrome and native dimming behave as expected.
+- Search: query typed in the panel, hit highlighted, Enter jumps; the outline navigates headings.
+- Native Export → HTML: 675,428 bytes. The export embeds the theme CSS and keeps `div#write`; six `.md-alert` cards measure 800px with the expected surfaces, three MathJax containers, Mermaid SVG and the local image are present; no page-level overflow or JS errors.
+- Native Export → PDF: A4, 4 pages, 267,894 bytes. All four rendered pages reviewed: code wraps inside its block, the table fits, every callout stays whole across page breaks, and math, Mermaid, image and footnote print correctly.
+
+Not covered by this run:
+
+- Application zoom at 100 / 125 / 150% (the window ran at 100%).
+- Table cell editing and column/row drag controls.
+- Language-selector popup, line numbers (disabled in this profile) and long-line horizontal scrolling.
+- File-tree interactions and common dialogs beyond the export save dialog; search and outline were exercised, dropdowns were not.
+- A native export of a full real document rather than the QA fixture.
+
+Evidence: screenshots plus the exported HTML/PDF under ignored `artifacts/native-qa/`; not shipped.
+
+## Native Typora — checklist
+
+- [x] Load theme and confirm it applies.
+- [x] Check typing/caret and autosave.
+- [x] Check code focus, language label and long content inside a fence.
+- [x] Check task toggle and nested/multi-line task alignment.
+- [x] Check alert cards, icons, edit-mode meta text and native print/export.
+- [x] Check math, Mermaid and local images.
+- [x] Check source/focus/typewriter modes.
+- [x] Check search panel, search hits and outline navigation.
+- [ ] Check code blur, language selector popup, line numbers and horizontal scrolling.
+- [ ] Check table cell editing and table controls.
+- [ ] Check file-tree interactions, dropdowns and common dialogs.
 - [ ] Check actual application zoom at 100%, 125%, 150%.
-- [ ] Export HTML and PDF; inspect code, wide tables, images and pagination.
-- [ ] Record platform, app version, actual screenshots and findings before stable release.
+- [ ] Export a full real document to HTML and PDF.
 
 ## Release gate
 

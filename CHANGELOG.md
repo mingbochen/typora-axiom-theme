@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Completed a partial native Typora 1.9.5 QA run on Windows 11 25H2: typing/caret, code focus, task toggling, alert edit state, math/Mermaid/images, source/focus/typewriter modes, search, outline, and native HTML/PDF export. Table editing, application zoom and a full-document export remain to check.
+
 ## 0.2.7 — 2026-11-03
 
 - Themed Typora 1.8+ GitHub-style alerts (Note / Tip / Important / Warning / Caution) as soft tinted cards with a hairline semantic border, replacing the stock saturated left bar. Typora keeps rendering its own label, icon and editing markup.
