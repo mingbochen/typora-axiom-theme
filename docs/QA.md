@@ -73,7 +73,8 @@ Environment: Windows 11 25H2 (build 26200), Typora 1.9.5, installed `axiom.css` 
 
 - The installed theme loads and applies to headings, body, code, tables, lists, callouts, sidebar and outline.
 - Body typing and caret: Chinese paste and Latin typing insert at the caret; word count updates and autosave writes the test file.
-- Code blocks: `python` language label, syntax colours, focus caret and code tooltip; the long line stays inside the block without widening the document.
+- Code blocks: `python` language label, syntax colours, focus caret and code tooltip; clicking the label opens Typora's language dropdown; the long line stays inside the block without widening the document.
+- Table: clicking a cell accepts pasted text and the native table toolbar appears; the table keeps its column widths and local horizontal scroll.
 - Task lists: clicking a checkbox toggles it with the yellow accent; nested and multi-line items keep their alignment.
 - Callouts: all five types, the label-only card, the Important list, and the native `[!TIP]` edit-marker state render inside the pale cards without breaking the layout.
 - Blockquotes (including nested), lists, inline code, links and footnotes render.
@@ -83,15 +84,13 @@ Environment: Windows 11 25H2 (build 26200), Typora 1.9.5, installed `axiom.css` 
 - Search: query typed in the panel, hit highlighted, Enter jumps; the outline navigates headings.
 - Native Export → HTML: 675,428 bytes. The export embeds the theme CSS and keeps `div#write`; six `.md-alert` cards measure 800px with the expected surfaces, three MathJax containers, Mermaid SVG and the local image are present; no page-level overflow or JS errors.
 - Native Export → PDF: A4, 4 pages, 267,894 bytes. All four rendered pages reviewed: code wraps inside its block, the table fits, every callout stays whole across page breaks, and math, Mermaid, image and footnote print correctly.
+- Full-document export: `examples/showcase.md` → HTML 665,131 bytes and PDF 330,932 bytes (A4, 4 pages). The HTML keeps five callout cards, eight MathJax containers, the Mermaid figure and the image; all four PDF pages were rendered and reviewed without clipping or split callouts.
 
 Not covered by this run:
 
-- Table cell editing and column/row drag controls.
-- Language-selector popup, line numbers (disabled in this profile) and long-line horizontal scrolling; code focus was exercised, blur was not confirmed separately.
+- Code blur, line numbers (disabled in this profile) and long-line horizontal scrolling.
+- Table column/row dragging; cell editing and the table toolbar were exercised.
 - File-tree interactions and common dialogs beyond the export save dialog; search and outline were exercised, dropdowns were not.
-- A native export of a full real document rather than the QA fixture.
-
-The agent shell could not relaunch Typora after the app was closed at the end of the run (the process exits immediately). These remaining interactive checks need a Typora window launched in the user's desktop session.
 
 Evidence: screenshots plus the exported HTML/PDF under ignored `artifacts/native-qa/`; not shipped.
 
@@ -99,17 +98,18 @@ Evidence: screenshots plus the exported HTML/PDF under ignored `artifacts/native
 
 - [x] Load theme and confirm it applies.
 - [x] Check typing/caret and autosave.
-- [x] Check code focus, language label and long content inside a fence.
+- [x] Check code focus, language label, language dropdown and long content inside a fence.
 - [x] Check task toggle and nested/multi-line task alignment.
 - [x] Check alert cards, icons, edit-mode meta text and native print/export.
 - [x] Check math, Mermaid and local images.
 - [x] Check source/focus/typewriter modes.
 - [x] Check search panel, search hits and outline navigation.
-- [ ] Check code blur, language selector popup, line numbers and horizontal scrolling.
-- [ ] Check table cell editing and table controls.
+- [ ] Check code blur, line numbers and long-line horizontal scrolling.
+- [x] Check table cell editing and the table toolbar.
+- [ ] Check table column/row dragging.
 - [ ] Check file-tree interactions, dropdowns and common dialogs.
 - [x] Check application zoom at Typora's 120 / 144 / 172% steps (100% base).
-- [ ] Export a full real document to HTML and PDF.
+- [x] Export a full real document to HTML and PDF.
 
 ## Release gate
 

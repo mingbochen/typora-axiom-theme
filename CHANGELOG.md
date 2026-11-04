@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Completed a partial native Typora 1.9.5 QA run on Windows 11 25H2: typing/caret, code focus, task toggling, alert edit state, math/Mermaid/images, source/focus/typewriter modes, search, outline, and native HTML/PDF export. Table editing, application zoom and a full-document export remain to check.
+- Completed a partial native Typora 1.9.5 QA run on Windows 11 25H2: typing/caret, code focus and language dropdown, task toggling, table cell editing, alert edit state, math/Mermaid/images, source/focus/typewriter modes, search, outline, 120/144/172% zoom, and native HTML/PDF export of both the QA document and the showcase. Code blur/line numbers, table column dragging and file-tree interactions remain to check.
 
 ## 0.2.7 — 2026-11-03
 
