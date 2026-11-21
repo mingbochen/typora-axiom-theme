@@ -2,7 +2,7 @@
 
 ## Proposed repository
 
-Selected by the owner: https://github.com/mingbochen/typora-axiom-theme (public), project name **Axiom**. Repository was empty when checked. Development preview source can be published there; stable release remains gated on native QA.
+Selected by the owner: https://github.com/mingbochen/typora-axiom-theme (public), project name **Axiom**. The repository is published and the theme is listed in the official Typora theme gallery; the 0.2.7 preview is current, and a stable release remains gated on the remaining native checks.
 
 Resolve the intended owner and usable write authorization before publication. Do not place any tokens or local account configuration in the repository.
 
@@ -11,22 +11,32 @@ Resolve the intended owner and usable write authorization before publication. Do
 - Preview tag: `v0.2.7-preview`.
 - Suggested title: `Axiom 0.2.7 — development preview`.
 - Attach `axiom-v0.2.7.zip` and its `.sha256` file.
-- State that screenshots are browser fixtures and native editor/export validation is pending.
+- State that sample images are browser fixtures; native checks are recorded separately in `docs/QA.md`.
 - README should show a real Typora screenshot once available; replace the clearly labeled browser preview at that point.
 
 The validation workflow publishes a **new prerelease only** after all required checks succeed, and only when a main-branch push commit explicitly contains `[preview release]`. Routine pushes and pull requests cannot enter that job. Publication uses the repository's ephemeral Actions token, scoped to the publishing job; no local user token is required.
 
 The job verifies the ZIP checksum and contained CSS, targets the exact validated commit, refuses an existing tag, never clobbers assets, and passes `--prerelease --latest=false`. Stable releases remain manual and gated by native QA. Notes come from `docs/PREVIEW_NOTES.md`.
 
+## Gallery listing
+
+Axiom is listed in the official Typora theme gallery: https://theme.typora.io/theme/Axiom/
+
+- Listing PR: https://github.com/typora/theme.typora.io/pull/604 — merged 2026-11-20 by abnerlee (merge commit `e06b079`).
+- Source entry: `_posts/theme/2026-11-04-Axiom.md` and `media/thumbnails/axiom.png` in `typora/theme.typora.io`.
+- The Download button in the listing points to this repository's Releases page, so new releases are reachable without changing the entry.
+- Changing the status text, screenshots, thumbnail or description requires another PR and a maintainer merge. Plan one update when the stable release ships.
+
 ## Before stable release
 
-- [ ] Complete native QA in `docs/QA.md`.
+- [ ] Complete the remaining native QA items in `docs/QA.md` (main surfaces verified 2026-11-04).
 - [ ] Check CSS, README, changelog and release tag versions match.
 - [ ] Review the release archive's allowlist and absence of local paths, tokens and development state.
 - [x] Select destination owner / repository / visibility with the user.
 - [x] Verify repository authentication and write access (connected GitHub integration).
 - [ ] Push the reviewed source and create the selected release.
-- [ ] Optionally submit to the Typora theme gallery after the repository is ready.
+- [x] Submit to the Typora theme gallery; listed at https://theme.typora.io/theme/Axiom/ (2026-11-20).
+- [ ] Update the gallery entry after the 1.0 release (status, screenshots, download wording).
 
 ## Repository contents
 

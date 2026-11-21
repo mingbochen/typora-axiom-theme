@@ -4,13 +4,15 @@
 
 一款依据浅色 ChatGPT 外观配置设计的独立主题：白色正文、黄色强调色、暖白侧栏、柔和的代码块和清晰的中文排版。安装只需要一个 CSS 文件，离线使用，无需字体下载或插件。
 
-> 当前版本：**0.2.7 开发预览**。已完成浏览器排版、Typora 基础样式及本机 MathJax / Mermaid 引擎的集成检查。真实 Typora 编辑交互与原生 PDF 导出仍待验证。当前样张属于浏览器开发夹具，不是 Typora 实机截图。
+**已被 Typora 官方主题库收录：** [theme.typora.io/theme/Axiom](https://theme.typora.io/theme/Axiom/)（2026-11-20 合并）。
+
+> 当前版本：**0.2.7 开发预览**。浏览器排版、Typora 基础样式、主要原生交互以及 HTML/PDF 导出已完成检查；代码失焦、行号、表格拖拽和文件树等边缘项仍待确认。样例图仍为浏览器夹具，不是 Typora 实机截图。
 
 ![浏览器排版预览，非 Typora 实机截图](docs/images/browser-preview.png)
 
 ## English overview
 
-Axiom is a quiet light Typora theme inspired by the ChatGPT / Codex reading experience: a white page, a warm sidebar, a single yellow accent, muted syntax colours and soft GitHub-style callouts. One CSS file, no web fonts, scripts or remote assets.
+Axiom is listed in the [official Typora theme gallery](https://theme.typora.io/theme/Axiom/). It is a quiet light theme inspired by the ChatGPT / Codex reading experience: a white page, a warm sidebar, a single yellow accent, muted syntax colours and soft GitHub-style callouts. One CSS file, no web fonts, scripts or remote assets.
 
 - 16px body text, an 800px reading measure and Chinese-first system font stacks (Segoe UI / Microsoft YaHei / Consolas on Windows).
 - Styled code fences, tables, task lists, TOC, footnotes, math and Mermaid previews.
@@ -32,7 +34,7 @@ Install: download `axiom.css` from the [preview releases](https://github.com/min
 
 ## 安装
 
-1. 从 [开发预览发行页](https://github.com/mingbochen/typora-axiom-theme/releases) 下载 CSS 或 ZIP；也可下载源码中的 [axiom.css](axiom.css)（文件页选择下载原始文件）。
+1. 从 [Typora 官方主题库](https://theme.typora.io/theme/Axiom/) 或 [开发预览发行页](https://github.com/mingbochen/typora-axiom-theme/releases) 下载 CSS 或 ZIP；也可下载源码中的 [axiom.css](axiom.css)（文件页选择下载原始文件）。
 2. 在 Typora 中打开 **偏好设置 → 外观 → 打开主题文件夹**。
 3. 将 `axiom.css` 复制进去。
 4. 重启 Typora，在 **主题** 菜单中选择 **Axiom**。菜单大小写由 Typora 生成，可能因版本不同而略有差异。
@@ -99,6 +101,7 @@ pwsh -File scripts/install.ps1
 | 真实 Typora：提示框卡片、标签与编辑态 | 已确认（2026-11-03 / 2026-11-04） |
 | 真实 Typora：公式、Mermaid、源码与专注模式 | 已检查（2026-11-04） |
 | 原生 HTML / PDF 导出 | 已检查：QA 文档 + showcase 全文（各 4 页 A4，2026-11-04） |
+| Typora 官方主题库 | 已收录：[theme.typora.io/theme/Axiom](https://theme.typora.io/theme/Axiom/)（2026-11-20 合并） |
 
 宽代码行保留代码块内的横向滚动；宽表格依靠 Typora 的表格容器滚动。打印样式会对长代码启用换行。复杂宽表格的打印仍需要单独检查。
 
