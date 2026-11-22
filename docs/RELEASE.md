@@ -21,6 +21,7 @@ The job verifies the ZIP checksum and contained CSS, targets the exact validated
 ## Stable release 1.0.0
 
 - Tag / title: `v1.0.0` / `Axiom 1.0.0`.
+- Release: https://github.com/mingbochen/typora-axiom-theme/releases/tag/v1.0.0
 - Assets: `axiom-v1.0.0.zip`, its `.sha256` file and `axiom.css`.
 - Notes: `docs/RELEASE_NOTES_1.0.0.md`.
 - The stable release is created manually with `gh release create --latest` after the validation workflow passes. The release commit must not contain `[preview release]`; that marker only triggers the preview publication job.
@@ -32,9 +33,10 @@ The job verifies the ZIP checksum and contained CSS, targets the exact validated
 Axiom is listed in the official Typora theme gallery: https://theme.typora.io/theme/Axiom/
 
 - Listing PR: https://github.com/typora/theme.typora.io/pull/604 — merged 2026-11-20 by abnerlee (merge commit `e06b079`).
+- 1.0.0 status update PR: https://github.com/typora/theme.typora.io/pull/616 — opened 2026-11-22; maintainer merge pending.
 - Source entry: `_posts/theme/2026-11-04-Axiom.md` and `media/thumbnails/axiom.png` in `typora/theme.typora.io`.
 - The Download button in the listing points to this repository's Releases page, so new releases are reachable without changing the entry.
-- Changing the status text, screenshots, thumbnail or description requires another PR and a maintainer merge. Plan one update when the stable release ships.
+- Changing the status text, screenshots, thumbnail or description requires another PR and a maintainer merge.
 
 ## Before stable release
 
@@ -43,9 +45,9 @@ Axiom is listed in the official Typora theme gallery: https://theme.typora.io/th
 - [x] Review the release archive's allowlist and absence of local paths, tokens and development state.
 - [x] Select destination owner / repository / visibility with the user.
 - [x] Verify repository authentication and write access (connected GitHub integration).
-- [x] Push the reviewed source and create the selected release.
+- [x] Push the reviewed source and create the selected release: https://github.com/mingbochen/typora-axiom-theme/releases/tag/v1.0.0
 - [x] Submit to the Typora theme gallery; listed at https://theme.typora.io/theme/Axiom/ (2026-11-20).
-- [x] Open a gallery entry update PR for the 1.0.0 status after the stable release.
+- [x] Open a gallery entry update PR for the 1.0.0 status after the stable release: https://github.com/typora/theme.typora.io/pull/616
 - [ ] Merge the gallery update PR (maintainer action).
 
 ## Repository contents

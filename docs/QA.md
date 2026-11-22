@@ -113,7 +113,7 @@ Evidence: screenshots plus the exported HTML/PDF under ignored `artifacts/native
 
 ## Release gate
 
-Axiom 1.0.0 was released on 2026-11-22. The main native surfaces above were verified in Typora 1.9.5 on Windows 11 25H2, and the stable archive is checked by the packaging script and the GitHub validation workflow. The unchecked items in the checklist (code-block blur / line numbers, table column dragging, file-tree dialogs) are native control details outside the theme CSS and are documented as non-blocking. The owner selected the public repository `mingbochen/typora-axiom-theme` for Axiom, and the theme is listed in the official gallery.
+Axiom 1.0.0 was released on 2026-11-22 (https://github.com/mingbochen/typora-axiom-theme/releases/tag/v1.0.0). The main native surfaces above were verified in Typora 1.9.5 on Windows 11 25H2, and the stable archive is checked by the packaging script and the GitHub validation workflow. The unchecked items in the checklist (code-block blur / line numbers, table column dragging, file-tree dialogs) are native control details outside the theme CSS and are documented as non-blocking. The owner selected the public repository `mingbochen/typora-axiom-theme` for Axiom; the theme is listed in the official gallery and its 1.0 status update is in PR #616.
 
 ## Local integration fixtures — completed 2026-11-01
 
