@@ -2,7 +2,7 @@
 
 ## Proposed repository
 
-Selected by the owner: https://github.com/mingbochen/typora-axiom-theme (public), project name **Axiom**. The repository is published and the theme is listed in the official Typora theme gallery; the 0.2.7 preview is current, and a stable release remains gated on the remaining native checks.
+Selected by the owner: https://github.com/mingbochen/typora-axiom-theme (public), project name **Axiom**. The repository is published, the theme is listed in the official Typora theme gallery, and the 1.0.0 stable release is current.
 
 Resolve the intended owner and usable write authorization before publication. Do not place any tokens or local account configuration in the repository.
 
@@ -18,6 +18,15 @@ The validation workflow publishes a **new prerelease only** after all required c
 
 The job verifies the ZIP checksum and contained CSS, targets the exact validated commit, refuses an existing tag, never clobbers assets, and passes `--prerelease --latest=false`. Stable releases remain manual and gated by native QA. Notes come from `docs/PREVIEW_NOTES.md`.
 
+## Stable release 1.0.0
+
+- Tag / title: `v1.0.0` / `Axiom 1.0.0`.
+- Assets: `axiom-v1.0.0.zip`, its `.sha256` file and `axiom.css`.
+- Notes: `docs/RELEASE_NOTES_1.0.0.md`.
+- The stable release is created manually with `gh release create --latest` after the validation workflow passes. The release commit must not contain `[preview release]`; that marker only triggers the preview publication job.
+- It packages the theme verified in `docs/QA.md`; the remaining native-control edge checks are documented there as non-blocking.
+- The theme styling is unchanged from 0.2.7 except for the version banner.
+
 ## Gallery listing
 
 Axiom is listed in the official Typora theme gallery: https://theme.typora.io/theme/Axiom/
@@ -29,14 +38,15 @@ Axiom is listed in the official Typora theme gallery: https://theme.typora.io/th
 
 ## Before stable release
 
-- [ ] Complete the remaining native QA items in `docs/QA.md` (main surfaces verified 2026-11-04).
-- [ ] Check CSS, README, changelog and release tag versions match.
-- [ ] Review the release archive's allowlist and absence of local paths, tokens and development state.
+- [x] Complete the main native QA and document the remaining edge checks in `docs/QA.md` (main surfaces verified 2026-11-04).
+- [x] Check CSS, README, changelog and release tag versions match.
+- [x] Review the release archive's allowlist and absence of local paths, tokens and development state.
 - [x] Select destination owner / repository / visibility with the user.
 - [x] Verify repository authentication and write access (connected GitHub integration).
-- [ ] Push the reviewed source and create the selected release.
+- [x] Push the reviewed source and create the selected release.
 - [x] Submit to the Typora theme gallery; listed at https://theme.typora.io/theme/Axiom/ (2026-11-20).
-- [ ] Update the gallery entry after the 1.0 release (status, screenshots, download wording).
+- [x] Open a gallery entry update PR for the 1.0.0 status after the stable release.
+- [ ] Merge the gallery update PR (maintainer action).
 
 ## Repository contents
 

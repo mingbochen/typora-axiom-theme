@@ -12,6 +12,7 @@ FILES = [
     'examples/showcase.md', 'examples/stress-test.md',
     'examples/customization.user.css', 'examples/assets/request-flow.svg',
     'scripts/install.ps1', 'docs/DESIGN.md', 'docs/QA.md', 'docs/RELEASE.md',
+    'docs/RELEASE_NOTES_1.0.0.md',
     'reference/chatgpt-light.json',
     'docs/images/browser-preview.png',
 ]

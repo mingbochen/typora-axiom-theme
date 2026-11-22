@@ -69,7 +69,7 @@ The browser fixture uses an illustrative sidebar, a small test syntax highlighte
 
 ## Native Typora — partial run, 2026-11-04
 
-Environment: Windows 11 25H2 (build 26200), Typora 1.9.5, installed `axiom.css` v0.2.7, window 1064×831. Started at 100% zoom; Typora's 120 / 144 / 172% steps were also checked. The run used a disposable document under ignored `artifacts/native-qa/`; no owner files were opened.
+Environment: Windows 11 25H2 (build 26200), Typora 1.9.5, installed `axiom.css` v0.2.7 (theme styling is unchanged in 1.0.0 except for the version banner), window 1064×831. Started at 100% zoom; Typora's 120 / 144 / 172% steps were also checked. The run used a disposable document under ignored `artifacts/native-qa/`; no owner files were opened.
 
 - The installed theme loads and applies to headings, body, code, tables, lists, callouts, sidebar and outline.
 - Body typing and caret: Chinese paste and Latin typing insert at the caret; word count updates and autosave writes the test file.
@@ -113,7 +113,7 @@ Evidence: screenshots plus the exported HTML/PDF under ignored `artifacts/native
 
 ## Release gate
 
-The current ZIP is a **development preview**. Publish a stable v1.0.0 only after native checks above are completed and any defects are resolved. The owner selected the public repository `mingbochen/typora-axiom-theme` for Axiom. Any publication before native sign-off must retain the preview status.
+Axiom 1.0.0 was released on 2026-11-22. The main native surfaces above were verified in Typora 1.9.5 on Windows 11 25H2, and the stable archive is checked by the packaging script and the GitHub validation workflow. The unchecked items in the checklist (code-block blur / line numbers, table column dragging, file-tree dialogs) are native control details outside the theme CSS and are documented as non-blocking. The owner selected the public repository `mingbochen/typora-axiom-theme` for Axiom, and the theme is listed in the official gallery.
 
 ## Local integration fixtures — completed 2026-11-01
 

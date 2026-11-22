@@ -1,8 +1,13 @@
 # Changelog
 
-## Unreleased
+## 1.0.0 — 2026-11-22
 
-- Completed a partial native Typora 1.9.5 QA run on Windows 11 25H2: typing/caret, code focus and language dropdown, task toggling, table cell editing, alert edit state, math/Mermaid/images, source/focus/typewriter modes, search, outline, 120/144/172% zoom, and native HTML/PDF export of both the QA document and the showcase. Code blur/line numbers, table column dragging and file-tree interactions remain to check.
+Axiom's first stable release, and its listing in the official Typora theme gallery.
+
+- Listed in the official Typora theme gallery: https://theme.typora.io/theme/Axiom/ (merged 2026-11-20).
+- Completed native Typora 1.9.5 checks on Windows 11 25H2: typing/caret, code focus and language dropdown, task toggling, table cell editing, alert edit state, math/Mermaid/images, source/focus/typewriter modes, search, outline, 120/144/172% zoom, and native HTML/PDF export of both the QA document and the showcase.
+- Documented the remaining non-blocking edge checks: code-block blur and line numbers (preference-dependent), table column dragging, and file-tree dialogs.
+- No theme styling changes since 0.2.7 beyond the version banner; this release packages the verified 0.2.7 theme as stable.
 
 ## 0.2.7 — 2026-11-03
 

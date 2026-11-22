@@ -6,7 +6,7 @@
 
 **已被 Typora 官方主题库收录：** [theme.typora.io/theme/Axiom](https://theme.typora.io/theme/Axiom/)（2026-11-20 合并）。
 
-> 当前版本：**0.2.7 开发预览**。浏览器排版、Typora 基础样式、主要原生交互以及 HTML/PDF 导出已完成检查；代码失焦、行号、表格拖拽和文件树等边缘项仍待确认。样例图仍为浏览器夹具，不是 Typora 实机截图。
+> 当前版本：**1.0.0 正式版**。主要原生交互、HTML/PDF 导出和官方主题库收录均已完成；代码块行号、表格列拖拽、文件树等原生控件细节未纳入本次验收，详见 [docs/QA.md](docs/QA.md)。样例图仍为浏览器夹具，不是 Typora 实机截图。
 
 ![浏览器排版预览，非 Typora 实机截图](docs/images/browser-preview.png)
 
@@ -20,7 +20,7 @@ Axiom is listed in the [official Typora theme gallery](https://theme.typora.io/t
 - Sidebar, outline, dialogs, source mode and print / PDF styles included.
 - Requires Typora 1.8+; tested on Windows Typora 1.9.5. macOS and Linux are not yet verified. MIT licensed.
 
-Install: download `axiom.css` from the [preview releases](https://github.com/mingbochen/typora-axiom-theme/releases), open **Preferences → Appearance → Open Theme Folder**, copy the file there, restart Typora, then choose **Axiom** from the Themes menu.
+Install: download `axiom.css` from the [releases](https://github.com/mingbochen/typora-axiom-theme/releases), open **Preferences → Appearance → Open Theme Folder**, copy the file there, restart Typora, then choose **Axiom** from the Themes menu.
 
 ## 设计
 
@@ -34,7 +34,7 @@ Install: download `axiom.css` from the [preview releases](https://github.com/min
 
 ## 安装
 
-1. 从 [Typora 官方主题库](https://theme.typora.io/theme/Axiom/) 或 [开发预览发行页](https://github.com/mingbochen/typora-axiom-theme/releases) 下载 CSS 或 ZIP；也可下载源码中的 [axiom.css](axiom.css)（文件页选择下载原始文件）。
+1. 从 [Typora 官方主题库](https://theme.typora.io/theme/Axiom/) 或 [发行页](https://github.com/mingbochen/typora-axiom-theme/releases) 下载 CSS 或 ZIP；也可下载源码中的 [axiom.css](axiom.css)（文件页选择下载原始文件）。
 2. 在 Typora 中打开 **偏好设置 → 外观 → 打开主题文件夹**。
 3. 将 `axiom.css` 复制进去。
 4. 重启 Typora，在 **主题** 菜单中选择 **Axiom**。菜单大小写由 Typora 生成，可能因版本不同而略有差异。

@@ -1,5 +1,7 @@
 # Axiom development preview
 
+> 历史说明：这些是 0.2.7 预览版的发布说明。1.0.0 稳定版说明见 `docs/RELEASE_NOTES_1.0.0.md`。
+
 浅色 ChatGPT 风格的 Typora 主题：白色正文、黄色强调色、暖白侧栏，以及按参考 App 核对的系统字体和 Codex 代码配色。
 
 **这是开发预览版。** 浏览器排版、真实 MathJax / Mermaid 引擎集成和代表性 Typora DOM 检查已完成；原生 Typora 编辑交互及原生 HTML / PDF 导出仍待验收。当前预览图是浏览器夹具，不是实机截图。
